@@ -1,6 +1,6 @@
 package com.dbc;
 
-public class JavaClass {
+public class Module2JavaClass {
 
 	private int version = 0;
 	private String name = "";
