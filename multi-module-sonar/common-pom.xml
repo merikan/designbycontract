@@ -38,7 +38,7 @@
 						<artifactId>maven-antrun-plugin</artifactId>
 						<executions>
 							<execution>
-								<id>create-empty-directory</id>
+								<id>create-directory</id>
 								<phase>pre-integration-test</phase>
 								<goals>
 									<goal>run</goal>
@@ -46,10 +46,7 @@
 								<configuration>
 									<tasks>
 										<echo message="Creating Directory ${integrationOutputDirectory}" />
-										<mkdir dir="${integrationOutputDirectory}/classes" />
-										<copy todir="${integrationOutputDirectory}/classes">
-											<fileset dir="${integrationSourceDirectory}/resources" />
-										</copy>
+										<mkdir dir="${integrationOutputDirectory}" />
 									</tasks>
 								</configuration>
 							</execution>
@@ -72,6 +69,39 @@
 									</sources>
 								</configuration>
 							</execution>
+							<execution>
+								<id>add-test-resources</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>add-test-resource</goal>
+								</goals>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>${integrationSourceDirectory}/java</directory>
+											<targetPath>${integrationOutputDirectory}</targetPath>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+							<execution>
+								<id>add-empty-directory</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>add-test-resource</goal>
+								</goals>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>${integrationSourceDirectory}/java</directory>
+											<targetPath>${integrationOutputDirectory}</targetPath>
+											<excludes>
+												<exclude>**/*</exclude>
+											</excludes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
 						</executions>
 					</plugin>
 					<plugin>
@@ -87,7 +117,7 @@
 								<configuration>
 									<compilerVersion>1.5</compilerVersion>
 									<compilerArguments>
-										<d>${integrationOutputDirectory}/classes</d>
+										<d>${integrationOutputDirectory}</d>
 									</compilerArguments>
 								</configuration>
 							</execution>
@@ -121,7 +151,7 @@
 			</build>
 			<properties>
 				<integrationSourceDirectory>${basedir}/src/integrationtest</integrationSourceDirectory>
-				<integrationOutputDirectory>${basedir}/target/integrationtest</integrationOutputDirectory>
+				<integrationOutputDirectory>${basedir}/target/integrationtest-classes</integrationOutputDirectory>
 			</properties>
 		</profile>
 		<profile>
