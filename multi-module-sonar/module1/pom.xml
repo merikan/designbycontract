@@ -7,7 +7,7 @@
 	<packaging>jar</packaging>
 	<name>module1</name>
 	<parent>
-	<relativePath>../common.pom.xml</relativePath>
+		<relativePath>../common.pom.xml</relativePath>
 		<groupId>com.jpmorgan.ib</groupId>
 		<artifactId>common</artifactId>
 		<version>1.0</version>
@@ -20,4 +20,28 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>jpmc-public</id>
+			<url>https://repo.jpmchase.net/maven/content/groups/jpmc-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jpmc-public</id>
+			<url>https://repo.jpmchase.net/maven/content/groups/jpmc-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
