@@ -44,8 +44,8 @@
 								<configuration>
 									<tasks>
 										<echo message="Creating Directory ${integrationOutputDirectory}" />
-										<mkdir dir="${integrationOutputDirectory}/classes" />
-										<copy todir="${integrationOutputDirectory}/classes">
+										<mkdir dir="${integrationOutputDirectory}" />
+										<copy todir="${integrationOutputDirectory}">
 											<fileset dir="${integrationSourceDirectory}/resources" />
 										</copy>
 									</tasks>
@@ -85,7 +85,7 @@
 								<configuration>
 									<compilerVersion>1.5</compilerVersion>
 									<compilerArguments>
-										<d>${integrationOutputDirectory}/classes</d>
+										<d>${integrationOutputDirectory}</d>
 									</compilerArguments>
 								</configuration>
 							</execution>
@@ -95,7 +95,7 @@
 						<artifactId>maven-failsafe-plugin</artifactId>
 						<version>2.8</version>
 						<configuration>
-							<testClassesDirectory>${integrationOutputDirectory}/classes</testClassesDirectory>
+							<testClassesDirectory>${integrationOutputDirectory}</testClassesDirectory>
 							<reportsDirectory>${integrationOutputDirectory}/failsafe-reports</reportsDirectory>
 							<test>**/*.java</test>
 							<additionalClasspathElements>
@@ -114,9 +114,8 @@
 			</build>
 			<properties>
 				<integrationSourceDirectory>${basedir}\src\integrationtest</integrationSourceDirectory>
-				<integrationOutputDirectory>${basedir}\target\integrationtest</integrationOutputDirectory>
+				<integrationOutputDirectory>${basedir}\target\integrationtest-classes</integrationOutputDirectory>
 			</properties>
-
 		</profile>
 		<profile>
 			<id>sonar</id>
@@ -136,7 +135,7 @@
 						<version>2.8</version>
 						<configuration>
 							<argLine>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.itReportPath}</argLine>
-							<testClassesDirectory>${integrationOutputDirectory}/classes</testClassesDirectory>
+							<testClassesDirectory>${integrationOutputDirectory}</testClassesDirectory>
 							<reportsDirectory>${integrationOutputDirectory}/failsafe-reports</reportsDirectory>
 							<test>**/*.java</test>
 							<additionalClasspathElements>
@@ -154,8 +153,8 @@
 				</plugins>
 			</build>
 			<properties>
-				<sonar.jacoco.reportPath>${basedir}\target\classes\jacoco.exec</sonar.jacoco.reportPath>
-				<sonar.jacoco.itReportPath>${integrationOutputDirectory}\classes\jacoco.exec</sonar.jacoco.itReportPath>
+				<sonar.jacoco.reportPath>${basedir}\target\test-classes\jacoco.exec</sonar.jacoco.reportPath>
+				<sonar.jacoco.itReportPath>${integrationOutputDirectory}\jacoco.exec</sonar.jacoco.itReportPath>
 				<sonar.jacoco.jar>${basedir}/lib/jacocoagent.jar</sonar.jacoco.jar>
 				<sonar.phase>integration-test</sonar.phase>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
