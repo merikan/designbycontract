@@ -127,7 +127,7 @@
 						<artifactId>maven-failsafe-plugin</artifactId>
 						<version>2.8</version>
 						<configuration>
-							<testClassesDirectory>${integrationOutputDirectory}/classes</testClassesDirectory>
+							<testClassesDirectory>${integrationOutputDirectory}</testClassesDirectory>
 							<reportsDirectory>${integrationOutputDirectory}/failsafe-reports</reportsDirectory>
 							<test>**/*.java</test>
 							<additionalClasspathElements>
@@ -172,7 +172,7 @@
 						<version>2.8</version>
 						<configuration>
 							<argLine>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.itReportPath}</argLine>
-							<testClassesDirectory>${integrationOutputDirectory}/classes</testClassesDirectory>
+							<testClassesDirectory>${integrationOutputDirectory}</testClassesDirectory>
 							<reportsDirectory>${integrationOutputDirectory}/failsafe-reports</reportsDirectory>
 							<test>**/*.java</test>
 							<additionalClasspathElements>
