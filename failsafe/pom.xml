@@ -14,8 +14,8 @@
 		</dependency>
 	</dependencies>
 	<properties>
-		<integrationSourceDirectory>src\integrationtest</integrationSourceDirectory>
-		<integrationOutputDirectory>target\integrationtest-classes</integrationOutputDirectory>
+		<integrationSourceDirectory>src/integrationtest</integrationSourceDirectory>
+		<integrationOutputDirectory>target/integrationtest-classes</integrationOutputDirectory>
 	</properties>
 	<profiles>
 		<profile>
