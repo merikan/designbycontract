@@ -113,8 +113,8 @@
 				</plugins>
 			</build>
 			<properties>
-				<integrationSourceDirectory>${basedir}\src\integrationtest</integrationSourceDirectory>
-				<integrationOutputDirectory>${basedir}\target\integrationtest-classes</integrationOutputDirectory>
+				<integrationSourceDirectory>${basedir}/src/integrationtest</integrationSourceDirectory>
+				<integrationOutputDirectory>${basedir}/target/integrationtest-classes</integrationOutputDirectory>
 			</properties>
 		</profile>
 		<profile>
@@ -153,8 +153,8 @@
 				</plugins>
 			</build>
 			<properties>
-				<sonar.jacoco.reportPath>${basedir}\target\test-classes\jacoco.exec</sonar.jacoco.reportPath>
-				<sonar.jacoco.itReportPath>${integrationOutputDirectory}\jacoco.exec</sonar.jacoco.itReportPath>
+				<sonar.jacoco.reportPath>${basedir}/target/test-classes/jacoco.exec</sonar.jacoco.reportPath>
+				<sonar.jacoco.itReportPath>${integrationOutputDirectory}/jacoco.exec</sonar.jacoco.itReportPath>
 				<sonar.jacoco.jar>${basedir}/lib/jacocoagent.jar</sonar.jacoco.jar>
 				<sonar.phase>integration-test</sonar.phase>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
