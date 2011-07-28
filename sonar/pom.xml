@@ -45,9 +45,6 @@
 									<tasks>
 										<echo message="Creating Directory ${integrationOutputDirectory}" />
 										<mkdir dir="${integrationOutputDirectory}" />
-										<copy todir="${integrationOutputDirectory}">
-											<fileset dir="${integrationSourceDirectory}/resources" />
-										</copy>
 									</tasks>
 								</configuration>
 							</execution>
@@ -70,6 +67,21 @@
 									</sources>
 								</configuration>
 							</execution>
+							<execution>
+								<id>add-test-resources</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>add-test-resource</goal>
+								</goals>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>${integrationSourceDirectory}/java</directory>
+											<targetPath>${integrationOutputDirectory}</targetPath>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>							
 						</executions>
 					</plugin>
 					<plugin>
@@ -158,6 +170,7 @@
 				<sonar.jacoco.jar>${basedir}/lib/jacocoagent.jar</sonar.jacoco.jar>
 				<sonar.phase>integration-test</sonar.phase>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+				<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
 			</properties>
 		</profile>
 	</profiles>
