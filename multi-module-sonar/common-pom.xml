@@ -195,6 +195,7 @@
 				<sonar.jacoco.jar>${basedir}/lib/jacocoagent.jar</sonar.jacoco.jar>
 				<sonar.phase>integration-test</sonar.phase>
 				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+				<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
 			</properties>
 		</profile>
 	</profiles>
