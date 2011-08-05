@@ -11,7 +11,7 @@
 
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
 
-	<bean id="bookXmlView"	class="org.springframework.web.servlet.view.xml.MarshallingView">
+	<bean id="tradeView"	class="org.springframework.web.servlet.view.xml.MarshallingView">
 		<constructor-arg>
 			<bean class="org.springframework.oxm.xstream.XStreamMarshaller">
 				<property name="autodetectAnnotations" value="true"/>
