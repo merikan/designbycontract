@@ -14,4 +14,11 @@ public class BookServiceImpl implements BookService{
 		return book;
 	}
 
+	@Override
+	public Book getBookByTitle(String title) {
+		Book book = new Book();
+		book.setTitle(title);
+		return book;
+	}
+
 }
