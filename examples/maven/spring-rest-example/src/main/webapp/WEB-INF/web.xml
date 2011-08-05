@@ -5,13 +5,13 @@
 	version="2.5">
 	
 	<servlet>
-		<servlet-name>books</servlet-name>
+		<servlet-name>trade</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>books</servlet-name>
-		<url-pattern>/booksearch/*</url-pattern>
+		<servlet-name>trade</servlet-name>
+		<url-pattern>/search/*</url-pattern>
 	</servlet-mapping>
 </web-app>
