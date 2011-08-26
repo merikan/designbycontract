@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 public class TradeServiceTest {
 
 	@Test
-	public void testName() throws Exception {
+	public void testGetTradeFromRestService() throws Exception {
 		String result = new RestTemplate()
 				.getForObject(
 						"http://localhost:8080/search/trade/{reference}",

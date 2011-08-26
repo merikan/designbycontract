@@ -9,8 +9,7 @@ public class TradeServiceImpl implements TradeService{
 
 	@Override
 	public Trade getTradeByReference(String reference) {
-		Trade trade = new Trade();
-		trade.setReference(reference);
+		Trade trade = new Trade(reference);
 		return trade;
 	}
 
