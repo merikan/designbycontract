@@ -1,13 +1,22 @@
 package com.dbc.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("trade")
+@Entity
 public class Trade {
-	
-	public Trade(String reference)
+
+	@Id	
+	private Long id;
+	private String reference;
+	private String description;
+
+	public Trade(Long id)
 	{
-		this.reference = reference;
+		this.id = id;
 	}
 
 	public String getReference() {
@@ -22,6 +31,4 @@ public class Trade {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	private String reference;
-	private String description;
 }
