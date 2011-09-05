@@ -3,8 +3,6 @@ package com.dbc.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.stereotype.Service;
-
 import com.dbc.model.Trade;
 import com.dbc.repository.TradeRepository;
 
@@ -33,6 +31,12 @@ public class CachedTradeService implements TradeService {
 	public Long createTrade(Trade t) {
 		long id = tradeRepository.createTrade(t);
 		return id;
+	}
+
+	@Override
+	public Trade getTradeById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

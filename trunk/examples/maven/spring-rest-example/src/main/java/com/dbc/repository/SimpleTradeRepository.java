@@ -21,4 +21,10 @@ public class SimpleTradeRepository implements TradeRepository{
 		return null;
 	}
 
+	@Override
+	public Trade getTradeById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

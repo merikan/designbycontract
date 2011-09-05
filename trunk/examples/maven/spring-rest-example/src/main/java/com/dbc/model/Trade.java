@@ -14,6 +14,11 @@ public class Trade {
 	private String reference;
 	private String description;
 
+	public Trade()
+	{
+		
+	}
+	
 	public long getId() {
 		return id;
 	}
