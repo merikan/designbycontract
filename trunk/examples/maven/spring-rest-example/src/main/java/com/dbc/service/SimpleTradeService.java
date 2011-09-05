@@ -1,0 +1,23 @@
+package com.dbc.service;
+
+import org.springframework.stereotype.Service;
+
+import com.dbc.model.Trade;
+import com.dbc.repository.TradeRepository;
+
+@Service
+public class SimpleTradeService implements TradeService{
+
+	TradeRepository tradeRepository;	
+	
+	public SimpleTradeService(TradeRepository tradeRepository)
+	{
+		this.tradeRepository = tradeRepository;
+	}
+	
+	@Override
+	public Trade getTradeByReference(String reference) {
+		return tradeRepository.getTradeByReference(reference);
+	}
+
+}
