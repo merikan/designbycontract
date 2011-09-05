@@ -33,7 +33,9 @@ public class TradeServiceTest {
 	private Trade getTrade()
 	{
 		String reference = "1234";
-		return new Trade(reference);
+		Trade trade = new Trade(0L);
+		trade.setReference(reference);
+		return trade;
 	}
 	
 }

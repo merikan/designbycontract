@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.dbc.model.Trade;
 import com.dbc.repository.TradeRepository;
 
-@Service
 public class CachedTradeService implements TradeService {
 
 	private Map<String, Trade> tradeCache = new HashMap<String, Trade>();
@@ -28,6 +27,12 @@ public class CachedTradeService implements TradeService {
 		Trade trade = tradeRepository.getTradeByReference(reference);
 		tradeCache.put(reference, trade);
 		return trade;
+	}
+
+	@Override
+	public Long createTrade(Trade t) {
+		long id = tradeRepository.createTrade(t);
+		return id;
 	}
 
 }
