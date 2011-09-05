@@ -33,4 +33,9 @@ public class SimpleTradeService implements TradeService{
 		return id;
 	}
 
+	@Override
+	public Trade getTradeById(Long id) {
+		return tradeRepository.getTradeById(id);
+	}
+
 }

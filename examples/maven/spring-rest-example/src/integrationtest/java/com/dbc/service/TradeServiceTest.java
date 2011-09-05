@@ -1,6 +1,7 @@
 package com.dbc.service;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,24 +10,25 @@ import com.thoughtworks.xstream.XStream;
 
 public class TradeServiceTest {
 
+	@Test
 	public void testGetTradeFromRestService() throws Exception {
+		long id = 10L;
+		createTrade(id);
 		String result = new RestTemplate()
 				.getForObject(
-						"http://localhost:8080/search/trade/{reference}",
-						String.class, "1");
+						"http://localhost:8080/find/trade/{id}",
+						String.class, id);
 		
 		Trade t = getTradeFromXml(result);
-		System.out.println(t.getId());
-		Assert.assertNotNull(result);
-		System.out.println(result);
+		assertEquals(t.getId(), id);
 	}
 	
 	@Test
 	public void testCreateTradeFromRestService() throws Exception {
 		long id = 1L;
-		String trade = createTrade(1L);
+		String trade = createTrade(id);
 		Trade t = getTradeFromXml(trade);
-		Assert.assertEquals(t.getId(), id);
+		assertEquals(t.getId(), id);
 	}
 
 	private Trade getTradeFromXml(String trade) {
@@ -41,7 +43,7 @@ public class TradeServiceTest {
 		String result = new RestTemplate()
 		.getForObject(
 				"http://localhost:8080/create/trade/{id}",
-				String.class, "1");
+				String.class, id);
 		return result;
 	}
 }

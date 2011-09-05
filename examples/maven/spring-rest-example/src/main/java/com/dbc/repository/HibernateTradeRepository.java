@@ -8,13 +8,18 @@ public class HibernateTradeRepository  extends HibernateDaoSupport implements Tr
 
 	@Override
 	public Trade getTradeByReference(String reference) {
-		// TODO Auto-generated method stub
-		return null;
+
+		throw new RuntimeException();
 	}
 
 	@Override
 	public Long createTrade(Trade trade) {
-		return (Long) this.getHibernateTemplate().save(trade);
+		return (Long) getHibernateTemplate().save(trade);
+	}
+
+	@Override
+	public Trade getTradeById(Long id) {
+		return getHibernateTemplate().get(Trade.class, id);
 	}
 
 }

@@ -23,6 +23,13 @@ public class TradeController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/find/trade/{id}")
+	public ModelAndView findTradeById(@PathVariable Long id) {
+		Trade trade = service.getTradeById(id);
+		ModelAndView mav = new ModelAndView("tradeView", BindingResult.MODEL_KEY_PREFIX + "trade", trade);
+		return mav;
+	}
+	
 	@RequestMapping(value = "/create/trade/{id}")
 	public ModelAndView getTradeByReferemce(@PathVariable Long id) {
 		System.out.println("******************************************************");
