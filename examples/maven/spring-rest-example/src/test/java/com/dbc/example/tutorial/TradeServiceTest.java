@@ -1,28 +1,31 @@
 package com.dbc.example.tutorial;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import static org.junit.Assert.assertEquals;
 
 import com.dbc.model.Trade;
+import com.dbc.repository.TradeRepository;
+import com.dbc.service.SimpleTradeService;
 import com.dbc.service.TradeService;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SimpleUnitTest {
+public class TradeServiceTest {
 
 	@Mock
-	TradeService tradeService;
-	
-	// Does nothing really :-)
+	TradeRepository tradeRepository;
+			
 	@Test
-	public void testGetTradeByReference() throws Exception
+	public void testSimpleTradeServiceGetTradeByReference() throws Exception
 	{		
-		Trade t = getTrade();		
-		when(tradeService.getTradeByReference(t.getReference())).thenReturn(t);
+		Trade t = getTrade();				
+		when(tradeRepository.getTradeByReference(t.getReference())).thenReturn(t);
+		TradeService tradeService = new SimpleTradeService(tradeRepository);
+		
 		Trade t2 = tradeService.getTradeByReference(t.getReference());
 		assertEquals(t, t2);
 	}
