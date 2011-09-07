@@ -15,24 +15,17 @@ public class TradeController {
  
 	@Autowired
 	TradeService service;
- 
-	@RequestMapping(value = "/search/trade/{reference}")
-	public ModelAndView getTradeByReferemce(@PathVariable String reference) {
-		Trade trade = service.getTradeByReference(reference);
-		ModelAndView mav = new ModelAndView("tradeView", BindingResult.MODEL_KEY_PREFIX + "trade", trade);
-		return mav;
-	}
-	
+ 	
 	@RequestMapping(value = "/find/trade/{id}")
 	public ModelAndView findTradeById(@PathVariable Long id) {
 		Trade trade = service.getTradeById(id);
-		ModelAndView mav = new ModelAndView("tradeView", BindingResult.MODEL_KEY_PREFIX + "trade", trade);
+		ModelAndView mav = new ModelAndView("tradeView", 
+				BindingResult.MODEL_KEY_PREFIX + "trade", trade);
 		return mav;
 	}
 	
 	@RequestMapping(value = "/create/trade/{id}")
-	public ModelAndView getTradeByReferemce(@PathVariable Long id) {
-		System.out.println("******************************************************");
+	public ModelAndView createTrade(@PathVariable Long id) {
 		Trade trade = new Trade(id); 
 		service.createTrade(trade);
 		ModelAndView mav = new ModelAndView("tradeView", BindingResult.MODEL_KEY_PREFIX + "trade", trade);
