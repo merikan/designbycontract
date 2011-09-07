@@ -9,6 +9,14 @@ import com.dbc.model.Trade;
 import com.thoughtworks.xstream.XStream;
 
 public class TradeServiceIntegrationTest {
+	
+	@Test
+	public void testCreateTradeFromRestService() throws Exception {
+		long id = 1L;
+		String tradeXml = createTrade(id);
+		Trade t = getTradeFromXml(tradeXml);
+		assertEquals(t.getId(), id);
+	}
 
 	@Test
 	public void testGetTradeFromRestService() throws Exception {
@@ -22,14 +30,6 @@ public class TradeServiceIntegrationTest {
 		System.out.println(tradeXml);
 		Trade trade = getTradeFromXml(tradeXml);
 		assertEquals(trade.getId(), id);
-	}
-	
-	@Test
-	public void testCreateTradeFromRestService() throws Exception {
-		long id = 1L;
-		String tradeXml = createTrade(id);
-		Trade t = getTradeFromXml(tradeXml);
-		assertEquals(t.getId(), id);
 	}
 
 	private Trade getTradeFromXml(String trade) {
