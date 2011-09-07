@@ -14,7 +14,7 @@ import com.dbc.service.SimpleTradeService;
 import com.dbc.service.TradeService;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TradeServiceTest {
+public class TradeServiceUnitTest {
 
 	@Mock
 	TradeRepository tradeRepository;
@@ -23,17 +23,17 @@ public class TradeServiceTest {
 	public void testSimpleTradeServiceGetTradeByReference() throws Exception
 	{		
 		Trade t = getTrade();				
-		when(tradeRepository.getTradeByReference(t.getReference())).thenReturn(t);
+		when(tradeRepository.getTradeById(t.getId())).thenReturn(t);
 		TradeService tradeService = new SimpleTradeService(tradeRepository);
 		
-		Trade t2 = tradeService.getTradeByReference(t.getReference());
+		Trade t2 = tradeService.getTradeById(t.getId());
 		assertEquals(t, t2);
 	}
 	
 	private Trade getTrade()
 	{
-		String reference = "1234";
 		Trade trade = new Trade(0L);
+		String reference = "1234";
 		trade.setReference(reference);
 		return trade;
 	}

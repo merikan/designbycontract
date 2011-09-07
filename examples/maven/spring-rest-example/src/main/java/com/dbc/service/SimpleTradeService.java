@@ -14,7 +14,7 @@ public class SimpleTradeService implements TradeService{
 	
 	public SimpleTradeService()
 	{
-		
+		super();
 	}
 	
 	public SimpleTradeService(TradeRepository tradeRepository)
@@ -22,11 +22,6 @@ public class SimpleTradeService implements TradeService{
 		this.tradeRepository = tradeRepository;
 	}
 	
-	@Override
-	public Trade getTradeByReference(String reference) {
-		return tradeRepository.getTradeByReference(reference);
-	}
-
 	@Override
 	public Long createTrade(Trade t) {
 		Long id = tradeRepository.createTrade(t);

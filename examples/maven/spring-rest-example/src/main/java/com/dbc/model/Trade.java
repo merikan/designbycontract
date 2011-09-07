@@ -16,7 +16,7 @@ public class Trade {
 
 	public Trade()
 	{
-		
+		super();
 	}
 	
 	public long getId() {
