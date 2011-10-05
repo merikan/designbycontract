@@ -10,9 +10,11 @@ import com.thoughtworks.xstream.XStream;
 
 public class TradeServiceIntegrationTest {
 	
+	private String endpoint = "http://localhost:8081/spring-rest-example";
+	
 	@Test
 	public void testCreateTradeFromRestService() throws Exception {
-		long id = 1L;
+		long id = (long) (Math.random()*100000);
 		String tradeXml = createTrade(id);
 		Trade t = getTradeFromXml(tradeXml);
 		assertEquals(t.getId(), id);
@@ -20,11 +22,10 @@ public class TradeServiceIntegrationTest {
 
 	@Test
 	public void testGetTradeFromRestService() throws Exception {
-		long id = 10L;
+		long id = (long) (Math.random()*100000);
 		createTrade(id);
 		String tradeXml = new RestTemplate()
-				.getForObject(
-						"http://localhost:8080/find/trade/{id}",
+				.getForObject(endpoint + "/find/trade/{id}",
 						String.class, id);
 		
 		System.out.println(tradeXml);
@@ -43,7 +44,7 @@ public class TradeServiceIntegrationTest {
 	{
 		String tradeXml = new RestTemplate()
 		.getForObject(
-				"http://localhost:8080/create/trade/{id}",
+				endpoint + "/create/trade/{id}",
 				String.class, id);
 		return tradeXml;
 	}
