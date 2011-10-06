@@ -117,18 +117,6 @@
 					<plugin>
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
-						<configuration>
-							<container>
-								<containerId>tomcat6x</containerId>
-								<type>installed</type>
-								<home>C:\dev\tools\apache-tomcat-6.0.32</home>
-							</container>
-							<configuration>
-								<properties>
-									<cargo.servlet.port>8081</cargo.servlet.port>
-								</properties>
-							</configuration>
-						</configuration>
 						<executions>
 							<execution>
 								<id>start-tomcat</id>
@@ -136,10 +124,6 @@
 								<goals>
 									<goal>start</goal>
 								</goals>
-								<configuration>
-									<scanIntervalSeconds>0</scanIntervalSeconds>
-									<daemon>true</daemon>
-								</configuration>
 							</execution>
 							<execution>
 								<id>stop-tomcat</id>
@@ -149,7 +133,33 @@
 								</goals>
 							</execution>
 						</executions>
+						<configuration>
+							<container>
+								<containerId>tomcat6x</containerId>
+								<home>${env.CATALINA_HOME}</home>
+							</container>
+							<configuration>
+								<properties>
+									<cargo.jvmargs><![CDATA[-javaagent:C:\study\articles\designbycontract\examples\maven\spring-rest-example\lib\jacocoagent.jar=destfile=C:\temp\jacoco.exec,append=true,includes=com.dbc.*]]></cargo.jvmargs>
+									<cargo.servlet.port>8081</cargo.servlet.port>
+									<cargo.logging>low</cargo.logging>
+								</properties>
+								<type>existing</type>
+								<home>${env.CATALINA_HOME}</home>
+							</configuration>
+							<deployer>
+								<deployables>
+									<deployable>
+										<groupId>${project.groupId}</groupId>
+										<artifactId>${project.artifactId}</artifactId>
+										<type>${project.packaging}</type>
+										<classifier>${config.classifier}</classifier>
+									</deployable>
+								</deployables>
+							</deployer>
+						</configuration>
 					</plugin>
+
 				</plugins>
 			</build>
 		</profile>
@@ -302,6 +312,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>2.7.2</version>
+
 						<configuration>
 							<test>**/*.java</test>
 						</configuration>
