@@ -3,9 +3,9 @@ package com.dbc.examples;
 public class City {
 
 	private String name;
-	private State state;
+	private County state;
 	
-	public City(String name, State state) {
+	public City(String name, County state) {
 		this.name = name;
 		this.state = state;
 	}
@@ -18,11 +18,11 @@ public class City {
 		this.name = name;
 	}
 
-	public State getState() {
+	public County getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(County state) {
 		this.state = state;
 	}
 
