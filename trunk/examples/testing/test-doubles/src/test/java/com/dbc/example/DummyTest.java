@@ -2,29 +2,32 @@ package com.dbc.example;
 
 import static org.mockito.Mockito.mock;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.dbc.examples.Address;
 import com.dbc.examples.AddressBook;
 import com.dbc.examples.City;
 import com.dbc.examples.Customer;
-import com.dbc.examples.State;
+import com.dbc.examples.County;
 import com.dbc.exception.InvalidCustomerException;
 
 public class DummyTest {
+	
+	public Customer createDummyCustomer() {
+		County county = new County("Essex");
+		City city = new City("Romford", county);
+		Address address = new Address("1234 Bank Street", city);
+		Customer customer = new Customer("john", "dobie", address);
+		return customer;
+	}
 
 	@Test
-	public void addCustomerTest() throws Exception {
-		State state = new State("West Dakota", "WD");
-		City city = new City("Centreville", state);
-		Address address = new Address("123 Blake St.", city);
-		Customer customer = new Customer("john", "dobie", address);
-		
+	public void addCustomerTest() {
+		Customer dummy = createDummyCustomer();
 		AddressBook addressBook = new AddressBook();
-		addressBook.addCustomer(customer);
-
-		Assert.assertEquals(1, addressBook.getNumberOfCustomers());
+		addressBook.addCustomer(dummy);
+		assertEquals(1, addressBook.getNumberOfCustomers());
 	}
 
 	@Test(expected = InvalidCustomerException.class)
@@ -39,6 +42,6 @@ public class DummyTest {
 	     Customer dummy = mock(Customer.class);  
 	     AddressBook addressBook = new AddressBook();  
 	     addressBook.addCustomer(dummy);  
-	     Assert.assertEquals(1, addressBook.getNumberOfCustomers());  
+	     assertEquals(1, addressBook.getNumberOfCustomers());  
 	 } 
 }

@@ -5,7 +5,7 @@ public class CustomerBuilder {
 	private String firstname;
 	private String surname;
 	private Address address = new AddressBuilder().build();
-	private State state;
+	private County state;
 	private City city;
 	
 	
