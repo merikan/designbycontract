@@ -1,5 +1,6 @@
 package com.dbc.domain;
 
+
 public class Trade {
 
 	private Long id;
@@ -7,6 +8,7 @@ public class Trade {
 	private String reference;
 
 	private String description;
+	
 
 	public Trade(Long id, String reference, String description) {
 		super();
@@ -17,10 +19,6 @@ public class Trade {
 
 	public Trade(String reference, String description) {
 		this(null, reference, description);
-	}
-
-	public Trade() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void setId(Long id) {

@@ -1,4 +1,4 @@
-package com.dbc.examples;
+package com.dbc.domain;
 
 public class County {
 

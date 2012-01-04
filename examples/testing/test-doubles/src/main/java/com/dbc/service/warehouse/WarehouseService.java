@@ -1,4 +1,4 @@
-package com.dbc.service;
+package com.dbc.service.warehouse;
 
 public interface WarehouseService {
 

@@ -5,11 +5,11 @@ import static org.mockito.Mockito.mock;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import com.dbc.examples.Address;
-import com.dbc.examples.AddressBook;
-import com.dbc.examples.City;
-import com.dbc.examples.Customer;
-import com.dbc.examples.County;
+import com.dbc.domain.Address;
+import com.dbc.domain.AddressBook;
+import com.dbc.domain.City;
+import com.dbc.domain.County;
+import com.dbc.domain.Customer;
 import com.dbc.exception.InvalidCustomerException;
 
 public class DummyTest {

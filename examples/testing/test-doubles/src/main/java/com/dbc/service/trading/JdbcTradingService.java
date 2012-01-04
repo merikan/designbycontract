@@ -1,11 +1,11 @@
-package com.dbc.service;
+package com.dbc.service.trading;
 
 import java.util.List;
 
 import com.dbc.domain.Trade;
 import com.dbc.exception.CreateTradeException;
 import com.dbc.exception.TradeNotFoundException;
-import com.dbc.repository.TradeRepository;
+import com.dbc.repository.trade.TradeRepository;
 
 public class JdbcTradingService implements TradingService{
 
