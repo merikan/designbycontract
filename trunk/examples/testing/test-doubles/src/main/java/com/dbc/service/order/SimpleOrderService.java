@@ -1,6 +1,8 @@
-package com.dbc.service;
+package com.dbc.service.order;
 
 import com.dbc.domain.Order;
+import com.dbc.service.email.EmailService;
+import com.dbc.service.warehouse.WarehouseService;
 
 public class SimpleOrderService implements OrderService{
 

@@ -1,4 +1,4 @@
-package com.dbc.examples;
+package com.dbc.domain;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.dbc.service;
+package com.dbc.service.order;
 
 import com.dbc.domain.Order;
 
