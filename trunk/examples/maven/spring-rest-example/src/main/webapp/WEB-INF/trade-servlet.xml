@@ -45,5 +45,5 @@
 	<bean id="tradeRepository" class="com.dbc.repository.HibernateTradeRepository">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
+  
 </beans>
