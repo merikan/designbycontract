@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+It’s easy to collect unit test code coverage because all of the common tools are geared up for it.<br/>  
+This article will explain how you can add unit test coverage to your Maven application in 10 minutes. We will use the excellent Jacoco code coverage library to show how easy it is.
+
+<h2>Examples</h2>
+All of the examples come from this article.<br/>
+
+<a href="http://johndobie.blogspot.com/2011/11/test-doubles-with-mockito.html">http://johndobie.blogspot.com/2011/11/test-doubles-with-mockito.html</a><br/>
+You can check them out from here<br/>
+
+svn co https://designbycontract.googlecode.com/svn/trunk/examples/testing/test-doubles<br/>
+
+With Maven 3 installed,  you can run them with this command.<br/>
+mvn clean package
+
+<h2>What is Jacoco</h2>
+Jacoco is a free code coverage library for Java.<br/>  http://www.eclemma.org/jacoco/<br/> 
+We use it because it is very simple to add to all types of build including ANT and Maven, and it is also very simple to add to Java containers or a standalone JVM.<br/>
+
+<h2>How Does it Work?</h2>
+Jacoco uses the standard JVM Tool Interface.<br/>  http://java.sun.com/developer/technicalArticles/J2SE/jvm_ti/<br/> 
+In simple terms you attach a Jacoco agent to a JVM when it starts. It was introduced in JDK 5 for monitoring and profiling JVMs and being able to dynamically modify Java classes as they're being loaded. Whenever a class is loaded Jacoco can instrument the class so it can see when the class is called and what lines are called.  That’s how it builds up the coverage statistics.  This is all done on the fly.  By default the results file is created when the JVM terminates.<br/>
+You can also run the agent in server mode which allows you to trigger a dump of the results.
+
+<h2>How do you attach the agent to the JVM?</h2>
+This is a very simple process.  You must specify where the jacoco jar is located and then you pass some parameters to define how the agent is to run.<br/>
+-javaagent:[yourpath/]jacocoagent.jar=[option1]=[value1],[option2]=[value2]<br/>
+A typical run might look like this<br/>
+-javaagent:jacoco.jar=destfile=${sonar.jacoco.itReportPath},append=false,includes=com.dbc.*<br/>
+A full reference is found here. http://www.eclemma.org/jacoco/trunk/doc/agent.html 
+  
+<h2>Jacoco Support For Maven</h2>
+The docs for the maven plugin defined here. http://www.eclemma.org/jacoco/trunk/doc/maven.html<br/>
+First we need to add the plugin itself.<br/>
+
+<plugin>
+  <groupId>org.jacoco</groupId>
+  <artifactId>jacoco-maven-plugin</artifactId>
+  <version>0.5.5.201112152213</version>
+</plugin>
+<br/>
+We can then define where the jacoco reports are output.<br/>
+<configuration>
+  <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+  <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+</configuration>
+<br/>
+Finally we need to define the following 2 executions to make the agent run before the tests are run and also to make sure that the jacoco report task is run when package is executed.<br/>
+<pre>
+<executions>
+  <execution>
+    <id>jacoco-initialize</id>
+    <goals>
+      <goal>prepare-agent</goal>
+    </goals>
+  </execution>
+  <execution>
+    <id>jacoco-site</id>
+    <phase>package</phase>
+    <goals>
+      <goal>report</goal>
+    </goals>
+  </execution>
+</executions>
+</pre>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

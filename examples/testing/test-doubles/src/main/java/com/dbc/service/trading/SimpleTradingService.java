@@ -6,18 +6,23 @@ import com.dbc.domain.Trade;
 import com.dbc.exception.CreateTradeException;
 import com.dbc.exception.TradeNotFoundException;
 import com.dbc.repository.trade.TradeRepository;
+import com.dbc.service.audit.AuditService;
 
-public class JdbcTradingService implements TradingService{
+public class SimpleTradingService implements TradingService{
 
 	TradeRepository tradeRepository;
+	AuditService auditService;
 	
-	public JdbcTradingService(TradeRepository tradeRepository)
+	public SimpleTradingService(TradeRepository tradeRepository, AuditService auditService)
 	{
 		this.tradeRepository = tradeRepository;
+		this.auditService = auditService;
 	}
 	
 	public Long createTrade(Trade trade) throws CreateTradeException {
-		return tradeRepository.createTrade(trade);
+		Long id = tradeRepository.createTrade(trade);
+		auditService.logNewTrade(trade);
+		return id;
 	}
 
 	public Trade getTradeById(Long id) throws TradeNotFoundException {		

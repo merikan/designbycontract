@@ -28,7 +28,7 @@ private List<Trade> getTrades()
 }
 	
 @Test
-public void testPriceTrades() throws Exception {
+public void testGetTotalPriceForMultipleTrades() throws Exception {
 	
 	Price price1 = new Price(10); 
 	Price price2 = new Price(15);
@@ -45,21 +45,21 @@ public void testPriceTrades() throws Exception {
 	assertEquals(total, totalPrice.getAmount());
 }
 
- 	@Test
-	public void testGetHighestPricedTrade() throws Exception {
-		
- 		Price price1 = new Price(10); 
- 		Price price2 = new Price(15);
- 		Price price3 = new Price(25);
- 		
- 		PricingRepository pricingRepository = mock(PricingRepository.class);
-		when(pricingRepository.getPriceForTrade(any(Trade.class))).thenReturn(price1, price2, price3);
-				
-		PricingService service = new SimplePricingService(pricingRepository);
-		Price highestPrice = service.getHighestPricedTrade(getTrades());
+@Test
+public void testGetHighestPricedTrade() throws Exception {
+	
+	Price price1 = new Price(10); 
+	Price price2 = new Price(15);
+	Price price3 = new Price(25);
+	
+	PricingRepository pricingRepository = mock(PricingRepository.class);
+	when(pricingRepository.getPriceForTrade(any(Trade.class))).thenReturn(price1, price2, price3);
 			
-		assertEquals(price3.getAmount(), highestPrice.getAmount());
-	}
+	PricingService service = new SimplePricingService(pricingRepository);
+	Price highestPrice = service.getHighestPricedTrade(getTrades());
+		
+	assertEquals(price3.getAmount(), highestPrice.getAmount());
+}
 
  	
 }
