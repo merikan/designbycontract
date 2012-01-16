@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SimpleTradingService.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">test-doubles</a> &gt; <a href="index.html" class="el_package">com.dbc.service.trading</a> &gt; <span class="el_source">SimpleTradingService.java</span></div><h1>SimpleTradingService.java</h1><pre class="source lang-java linenums">package com.dbc.service.trading;
+
+import java.util.List;
+
+import com.dbc.domain.Trade;
+import com.dbc.exception.CreateTradeException;
+import com.dbc.exception.TradeNotFoundException;
+import com.dbc.repository.trade.TradeRepository;
+import com.dbc.service.audit.AuditService;
+
+public class SimpleTradingService implements TradingService{
+
+	TradeRepository tradeRepository;
+	AuditService auditService;
+	
+	public SimpleTradingService(TradeRepository tradeRepository, AuditService auditService)
+<span class="fc" id="L17">	{</span>
+<span class="fc" id="L18">		this.tradeRepository = tradeRepository;</span>
+<span class="fc" id="L19">		this.auditService = auditService;</span>
+<span class="fc" id="L20">	}</span>
+	
+	public Long createTrade(Trade trade) throws CreateTradeException {
+<span class="fc" id="L23">		Long id = tradeRepository.createTrade(trade);</span>
+<span class="fc" id="L24">		auditService.logNewTrade(trade);</span>
+<span class="fc" id="L25">		return id;</span>
+	}
+
+	public Trade getTradeById(Long id) throws TradeNotFoundException {		
+<span class="nc" id="L29">		Trade t = tradeRepository.getTradeById(id);</span>
+<span class="nc" id="L30">		return t;</span>
+	}
+
+	public List&lt;Trade&gt; getTradesFilteredByReference(String reference) {
+		// Long running call taking 30s.
+<span class="nc" id="L35">		List&lt;Trade&gt; filteredTrades = tradeRepository.getTradesFilteredByReference(reference);</span>
+<span class="nc" id="L36">		return filteredTrades;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.5.201112152213</span></div></body></html>
