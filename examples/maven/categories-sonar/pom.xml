@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dbc</groupId>
-	<artifactId>categories-jacoco</artifactId>
+	<artifactId>categories-sonar</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 	<properties>
@@ -40,13 +40,13 @@
 						<version>2.12</version>
 					</dependency>
 				</dependencies>
-				<configuration>
-					<argLine>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.reportPath},includes=com.*</argLine>
-					<includes>
-						<include>**/*.class</include>
-					</includes>
-					<excludedGroups>com.test.annotation.type.IntegrationTest</excludedGroups>
-				</configuration>
+	<configuration>
+		<argLine>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.reportPath},includes=com.*</argLine>
+		<includes>
+			<include>**/*.class</include>
+		</includes>
+		<excludedGroups>com.test.annotation.type.IntegrationTest</excludedGroups>
+	</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
