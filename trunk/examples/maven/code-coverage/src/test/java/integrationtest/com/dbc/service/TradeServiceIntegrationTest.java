@@ -13,7 +13,7 @@ import com.thoughtworks.xstream.XStream;
 @Category(IntegrationTest.class)
 public class TradeServiceIntegrationTest {
 	
-	private String endpoint = "http://localhost:8080/";
+	private String endpoint = "http://localhost:8081/code-coverage";
 	
 	@Test
 	public void testCreateTradeFromRestService() throws Exception {
