@@ -4,51 +4,29 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.springframework.web.client.RestTemplate;
 
 import com.dbc.model.Trade;
 import com.dbc.test.annotation.type.IntegrationTest;
-import com.thoughtworks.xstream.XStream;
 
 @Category(IntegrationTest.class)
 public class TradeServiceIntegrationTest {
 	
-	private String endpoint = "http://localhost:8081/code-coverage";
-	
+	private TestHelper helper = new TestHelper();
+
 	@Test
-	public void testCreateTradeFromRestService() throws Exception {
-		long id = (long) (Math.random()*100000);
-		String tradeXml = createTrade(id);
-		Trade t = getTradeFromXml(tradeXml);
+	public void testCreateTradeFromRestService() throws Exception 
+	{
+		long id = helper.getRandomId();
+		Trade t = helper.createTrade(id);
 		assertEquals(t.getId(), id);
 	}
 
 	@Test
-	public void testGetTradeFromRestService() throws Exception {
-		long id = (long) (Math.random()*100000);
-		createTrade(id);
-		String tradeXml = new RestTemplate()
-				.getForObject(endpoint + "/find/trade/{id}",
-						String.class, id);
-		
-		System.out.println(tradeXml);
-		Trade trade = getTradeFromXml(tradeXml);
+	public void testFindTrade() throws Exception {		
+		long id = helper.getRandomId();
+		Trade t = helper.createTrade(id);
+		Trade trade = helper.findTrade(t.getId());		
 		assertEquals(trade.getId(), id);
 	}
 
-	private Trade getTradeFromXml(String trade) {
-		XStream xstream = new XStream();
-		xstream.processAnnotations(Trade.class);
-		Trade t = (Trade)xstream.fromXML(trade);
-		return t;
-	}	
-	
-	private String createTrade(Long id)
-	{
-		String tradeXml = new RestTemplate()
-		.getForObject(
-				endpoint + "/create/trade/{id}",
-				String.class, id);
-		return tradeXml;
-	}
 }
