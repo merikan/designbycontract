@@ -46,4 +46,22 @@ public class Trade {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Trade)) {
+			return false;
+		}
+		Trade other = (Trade) obj;
+		if (id != other.id) {
+			return false;
+		}
+		return true;
+	}
 }

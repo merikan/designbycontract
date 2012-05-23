@@ -22,17 +22,18 @@
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="packagesToScan"
-			value="com.dbc.model" />
+		<property name="packagesToScan" value="com.dbc.model" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory
+				</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
 				<prop key="hibernate.connection.pool_size">0</prop>
 				<prop key="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</prop>
-				<prop key="hibernate.connection.url">jdbc:hsqldb:target/data/tradedatabase;shutdown=true</prop>
+				<prop key="hibernate.connection.url">jdbc:hsqldb:target/data/tradedatabase;shutdown=true
+				</prop>
 				<prop key="hibernate.connection.username">sa</prop>
 				<prop key="hibernate.connection.password"></prop>
 				<prop key="hibernate.connection.autocommit">true</prop>
@@ -45,5 +46,17 @@
 	<bean id="tradeRepository" class="com.dbc.repository.HibernateTradeRepository">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-  
+
+	<bean id="tradeService" class="com.dbc.service.SimpleTradeService">
+		<constructor-arg>
+			<ref bean="tradeRepository" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="tradeController" class="com.dbc.web.TradeController">
+		<constructor-arg>
+			<ref bean="tradeService" />
+		</constructor-arg>
+	</bean>
+
 </beans>
