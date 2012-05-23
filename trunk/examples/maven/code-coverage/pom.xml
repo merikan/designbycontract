@@ -56,7 +56,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>com.springsource.javax.servlet</artifactId>
@@ -121,7 +121,7 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<argLine>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.reportPath},includes=com.*,append=false</argLine>
+					<argLine>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.reportPath},includes=com.dbc.*,append=false</argLine>
 					<includes>
 						<include>**/*.class</include>
 					</includes>
@@ -187,8 +187,7 @@
 								<type>standalone</type>
 								<home>${basedir}/target/server/tomcat</home>
 								<properties>
-									<!-- <cargo.jvmargs>-javaagent:${sonar.jacoco.jar}=output=tcpserver,port=8010,includes=com.jpm.*,address=localhost</cargo.jvmargs> -->
-									<cargo.jvmargs>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.itReportPath},append=false,includes=com.*</cargo.jvmargs>
+									<cargo.jvmargs>-javaagent:${sonar.jacoco.jar}=destfile=${sonar.jacoco.itReportPath},append=false,includes=com.dbc.*</cargo.jvmargs>
 									<cargo.servlet.port>8081</cargo.servlet.port>
 									<cargo.tomcat.ajp.port>8087</cargo.tomcat.ajp.port>
 									<cargo.logging>high</cargo.logging>
@@ -209,6 +208,31 @@
 								<goals>
 									<goal>stop</goal>
 								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>ant</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>ant</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<ant antfile="${basedir}/build.xml"
+											target="report report-it" />
+									</tasks>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>

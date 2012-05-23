@@ -15,7 +15,7 @@ public class TestHelper {
 		return getTradeFromXml(tradeXml);
 	}
 
-	public Trade findTrade(long id) {
+	public Trade getTradeById(long id) {
 		String tradeXml = new RestTemplate().getForObject(ENDPOINT
 				+ "/find/trade/{id}", String.class, id);
 		return getTradeFromXml(tradeXml);
@@ -31,5 +31,13 @@ public class TestHelper {
 		xstream.processAnnotations(Trade.class);
 		Trade t = (Trade) xstream.fromXML(trade);
 		return t;
+	}
+	
+	public Trade getDummyTrade()
+	{
+		Trade trade = new Trade(0L);
+		String reference = "1234";
+		trade.setReference(reference);
+		return trade;
 	}
 }

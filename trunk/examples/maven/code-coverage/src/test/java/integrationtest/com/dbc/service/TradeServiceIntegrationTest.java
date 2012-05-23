@@ -14,19 +14,11 @@ public class TradeServiceIntegrationTest {
 	private TestHelper helper = new TestHelper();
 
 	@Test
-	public void testCreateTradeFromRestService() throws Exception 
-	{
-		long id = helper.getRandomId();
-		Trade t = helper.createTrade(id);
-		assertEquals(t.getId(), id);
+	public void testGetTradeById() throws Exception {		
+		Trade dummyTrade = helper.getDummyTrade();
+		Trade savedTrade = helper.createTrade(dummyTrade.getId());
+		
+		Trade trade = helper.getTradeById(dummyTrade.getId());		
+		assertEquals(trade, savedTrade);
 	}
-
-	@Test
-	public void testFindTrade() throws Exception {		
-		long id = helper.getRandomId();
-		Trade t = helper.createTrade(id);
-		Trade trade = helper.findTrade(t.getId());		
-		assertEquals(trade.getId(), id);
-	}
-
 }
