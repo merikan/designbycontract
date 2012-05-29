@@ -9,7 +9,12 @@ import com.dbc.repository.TradeRepository;
 public class SimpleTradeService implements TradeService{
 
 	TradeRepository tradeRepository;	
-		
+
+	public SimpleTradeService()
+	{
+		super();
+	}
+	
 	public SimpleTradeService(TradeRepository tradeRepository)
 	{
 		this.tradeRepository = tradeRepository;
