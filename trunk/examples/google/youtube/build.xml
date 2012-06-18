@@ -1,0 +1,63 @@
+<project name="Example" xmlns:jacoco="antlib:org.jacoco.ant" default="report-all">
+
+	<property name="result.report.it.dir" location="./target/jacoco-reports/it"/>
+	<property name="result.report.unit.dir" location="./target/jacoco-reports/unit"/>
+	<property name="result.dir" location="./target/coverage-reports"/>
+	<property name="result.exec.unit.file" location="${result.dir}/jacoco-unit.exec"/>
+	<property name="result.exec.it.file" location="${result.dir}/jacoco-it.exec"/>
+	
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath path="./lib/jacocoant.jar" />
+	</taskdef>
+
+	<target name="dump">
+		<echo>Dumping the jacoco results to ${result.exec.file}</echo>
+		<jacoco:dump address="localhost" port="8010" reset="true" destfile="${result.exec.file}" />
+	</target>
+
+	<target name="report-unit">
+		<jacoco:report>
+			<executiondata>
+				<file file="${result.exec.unit.file}" />
+			</executiondata>
+			<structure name="unit test report">
+				<group name="unit-test">
+					<classfiles>
+						<fileset dir="./target/classes" />
+					</classfiles>
+					<sourcefiles>
+						<fileset dir="./src/main/java" />
+					</sourcefiles>
+				</group>
+			</structure>
+			<!-- to produce reports in different formats. -->
+			<html destdir="${result.report.unit.dir}" />
+			<csv destfile="${result.report.unit.dir}/report.csv" />
+			<xml destfile="${result.report.unit.dir}/report.xml" />
+		</jacoco:report>
+	</target>
+
+	<target name="report-it">
+		<jacoco:report>
+			<executiondata>
+				<file file="${result.exec.it.file}" />
+			</executiondata>
+			<structure name="integration test report">
+				<group name="integration-test">
+					<classfiles>
+						<fileset dir="./target/classes" />
+					</classfiles>
+					<sourcefiles>
+						<fileset dir="./src/main/java" />
+					</sourcefiles>
+				</group>
+			</structure>
+			<!-- to produce reports in different formats. -->
+			<html destdir="${result.report.it.dir}" />
+			<csv destfile="${result.report.it.dir}/report.csv" />
+			<xml destfile="${result.report.it.dir}/report.xml" />
+		</jacoco:report>
+	</target>
+
+	<target name="report-all" depends="report-unit,report-it"/>
+</project>
