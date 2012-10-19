@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   		http://www.springframework.org/schema/context
+	   		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+			http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/data/jpa
+   			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+   			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/mm" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>	
+	
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="mysqlDataSource" />
+		<property name="packagesToScan" value="com.dbc.mm.model" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="false" />
+ 				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" /> 				
+			</bean>
+		</property>
+	</bean>		
+	
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+		</property>
+	</bean>
+
+	<!-- Enable annotation driven transactions. -->
+	<tx:annotation-driven />
+
+	<!-- Activates various annotations to be detected in bean classes -->
+	<context:annotation-config />
+
+	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans. For example @Controller 
+		and @Service. Make sure to set the correct base-package -->
+	<context:component-scan base-package="com.dbc.mm" />
+
+	<!-- Configures the annotation-driven Spring MVC Controller programming model. Note that, with Spring 3.0, this tag works 
+		in Servlet MVC only! -->
+	<mvc:annotation-driven />
+
+	<jpa:repositories base-package="com.dbc.mm.repository" />
+
+<!-- 	<context:property-placeholder location="classpath:application.properties" /> -->
+
+	<!-- The properties are not loaded correctly in tests. hard coded for now. -->
+	<!-- https://jira.springsource.org/browse/SPR-9011 -->
+<!-- 	<mvc:interceptors>
+		<bean class="com.dbc.mm.interceptor.DevelopmentSecurityInterceptorImpl"/>
+	</mvc:interceptors> -->
+
+	<!-- Enable the @AspectJ support -->
+	<aop:aspectj-autoproxy/>
+<!-- 	<bean id="profilingAspect" class="com.dbc.mm.util.ProfilingAspect" /> -->
+
+</beans>
