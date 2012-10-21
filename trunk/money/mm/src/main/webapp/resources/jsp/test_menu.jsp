@@ -2,10 +2,10 @@
 
 <div id="nav">
 	<ul style="width: 1250px">
-		<li class='active'><a href='/icon/pages/dashboard/viewAll'><span>Dashboard</span></a></li>
-		<li class='has-sub'><a href='#'><span>Create</span></a>
+		<li class='active'><a href='/mm/pages/dashboard/view'><span>Dashboard</span></a></li>
+		<li class='has-sub'><a href='/mm/pages/report/view'><span>Report</span></a>
 			<ul>
-				<li><a href='/icon/pages/triage/new'><span>New Change</span></a></li>
+				<li><a href='/mm/pages/report/view'><span>Report</span></a></li>
 			</ul>
 		</li>
 		<span id="loggedOnUser">
