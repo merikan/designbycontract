@@ -65,7 +65,14 @@ div.dataTables_info {
 									<td>${transaction.balance}</td>
 									<td>${transaction.accountName}</td>
 									<td>${transaction.accountNumber}</td>
-									<td>${transaction.category.name}</td>
+									<td>
+										<select>
+											<c:forEach var="category" items="${form.allCategories}">
+												<option value="${category.id}">${category.name}</option>
+											</c:forEach>
+										</select>
+									</td>
+
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -109,40 +116,9 @@ div.dataTables_info {
 					               ]
 				});
 				
-				$(document).ready(function () {
-				    $('#transactions').dataTable().makeEditable({
-
-				        sUpdateURL: function(value, settings)				        
-                        {
-				        	alert(settings.value);
-				        	 	$.post('/mm/pages/dashboard/movie/', function(data) {
-				        	 		});
-                                return(value);
-                        },
-				        "aoColumns": [
-				                        {},
-				                        {},
-				                        {},
-				                        {},
-				                        {},
-				                        null,
-				                        null,
-				                        {
-				                                type: 'select',
-				                                onblur: 'submit',
-				                                data: "{'':'Please select...', 'A':'A','B':'B','C':'C'}",
-				                                event: 'mouseover'
-				                        },
-				                        null
-				                ]
-				    });
-				})
 
 				$('#transactions').show();
 			});
 		</script>
-
-
-	</body>
 </div>
 </html>
