@@ -35,8 +35,12 @@ div.dataTables_info {
 		<table width="1250" class="jTPS">
 			<tr>
 				<td style="width: 640px; max-width: 640px; overflow: hidden;" valign="top">
-					<h3 style="float: left; position: relative; top: 0;">My Tran sactions</h3>
-					<br />
+					<c:forEach var="reportCategory" items="${form.categories}">
+						<c:url value="/pages/triage/view" var="url">
+						<c:param name="id" value="${transaction.id}" />
+						</c:url>
+					<b>${reportCategory.category.name}. Total : ${reportCategory.total}</b>
+					<br /><br/>
 					<table id="transactions">
 						<thead>
 							<tr valign="middle">
@@ -47,11 +51,10 @@ div.dataTables_info {
 								<th width="120px" align="center" valign="bottom">Value</th>
 								<th width="120px" align="left" valign="bottom">Account Name</th>
 								<th width="80px" align="left" valign="bottom">Account Number</th>
-								<th width="80px" align="left" valign="bottom">Category</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="transaction" items="${form.allTransactions}">
+							<c:forEach var="transaction" items="${reportCategory.transactions}">
 								<c:url value="/pages/triage/view" var="url">
 									<c:param name="id" value="${transaction.id}" />
 								</c:url>
@@ -63,68 +66,16 @@ div.dataTables_info {
 									<td>${transaction.value}</td>									
 									<td>${transaction.accountName}</td>
 									<td>${transaction.accountNumber}</td>
-									<td>
-										<select class="trans" id="${transaction.id}" >
-											<option value="-1" >None</option>
-											<c:forEach var="category" items="${form.allCategories}">
-												<option value="${category.id}" ${category.id == transaction.category.id ? 'selected' : ''}>${category.name}</option>
-											</c:forEach>
-										</select>
-									</td>
-
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
+					<br/>
+					</c:forEach>
 				</td>
 			</tr>
 		</table>
 				
-		<script type="text/javascript">
-			jQuery.extend(jQuery.fn.dataTableExt.oSort, {
-				"num-html-pre" : function(a) {
-					var x = a.replace(/<.*?>/g, "");
-					return parseFloat(x);
-				},
 
-				"num-html-asc" : function(a, b) {
-					return ((a < b) ? -1 : ((a > b) ? 1 : 0));
-				},
-
-				"num-html-desc" : function(a, b) {
-					return ((a < b) ? 1 : ((a > b) ? -1 : 0));
-				}
-			});
-
-			$(document).ready(function() {
-				$('.trans').change(function() 
-						{
-							$.post('/mm/pages/dashboard/updateTransaction?transactionId=' + $(this).attr('id') + "&categoryId=" + $(this).attr('value'));
-						});
-				
-
-				
-				$('#transactions').hide();
-				$("#transactions").dataTable({
-					"iDisplayLength" : 20,
-					"bLengthChange" : false,
-					"bFilter" : true,
-					"aaSorting" : [ [ 0, "desc" ] ],
-					"aoColumns" : [ {"sType" : "num-html"}, 
-					                null, 
-					                null, 
-					                { type: "text", bRegex:true }, 
-					                null,
-					                null,
-					                null,
-					                { type: "text", bRegex:true }
-					               ]
-				});
-				
-
-				$('#transactions').show();
-				        	 					
-			});
-		</script>
 </div>
 </html>

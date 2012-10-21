@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dbc.mm.model.Transaction;
 import com.dbc.mm.repository.TransactionRepository;
 
 @Service
+@Transactional
 public class TransactionServiceImpl implements TransactionService {
 
 	@Autowired
@@ -20,8 +22,19 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 	
 	@Override
+	public Transaction findById(Long id) {
+		return transactionRepository.findOne(id);
+	}
+	
+	@Override
 	public void save(List<Transaction> transactions) {
 		transactionRepository.save(transactions);
+	}
+	
+	@Override
+	public void save(Transaction t)
+	{
+		transactionRepository.save(t);
 	}
 }
 

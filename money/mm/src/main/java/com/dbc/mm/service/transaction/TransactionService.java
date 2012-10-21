@@ -9,6 +9,9 @@ public interface TransactionService {
 	public List<Transaction> findAll();
 
 	void save(List<Transaction> transactions);
+
+	void save(Transaction t);
 	
+	public Transaction findById(Long id);
 
 }
