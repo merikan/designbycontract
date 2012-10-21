@@ -1,3 +1,4 @@
+
 /* FONT STACK */
 
 h1,h2,h3,h4,h5,h6 {
@@ -7,6 +8,12 @@ h1,h2,h3,h4,h5,h6 {
 body,input,select,textarea {
 	font: normal 13px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	font-size: 13px;
+}
+
+bollocks
+{
+	color:black;
+	background-color: black;
 }
 
 

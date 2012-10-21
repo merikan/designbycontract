@@ -11,14 +11,43 @@
 <head>
 <link rel="stylesheet" type="text/css" href="../../resources/css/jTPS.css">
 <link rel="stylesheet" type="text/css" href="../../resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="../../resources/css/main.css">
 <script type="text/javascript" language="javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../resources/js/jquery/1.82/jquery.dataTables.editable.js"></script>
-<script type="text/javascript" src="../../resources/js/jquery/1.82/jquery.jeditable.js"></script>
-<script type="text/javascript" src="../../resources/js/jquery/1.82/jquery.validate.js"></script>
 
 
 <style type="text/css">
+
+.row_selected
+{
+	background-color: grey;
+}
+
+#bollocks tr
+{
+	color:black;
+	background-color: black;
+}
+
+#odd
+{
+	color:black;
+	background-color: black;
+}
+
+#row_selected
+
+even bollocks
+{
+	color:black;
+	background-color: black;
+}
+
+
+.bollocks tr
+{
+	color:black;
+	background-color: black;
+}
+
 div.dataTables_info {
 	float: left;
 }
@@ -35,8 +64,17 @@ div.dataTables_info {
 		<table width="1250" class="jTPS">
 			<tr>
 				<td style="width: 640px; max-width: 640px; overflow: hidden;" valign="top">
-					<h3 style="float: left; position: relative; top: 0;">My Tran sactions</h3>
-					<br />
+					<h3 style="float: left; position: relative; width:100%; padding : 20px;">My Transactions</h3>
+					
+					<div style="float:right;">
+					<select id="jd" >
+											<option value="-1" >None</option>
+											<c:forEach var="category" items="${form.allCategories}">
+												<option value="${category.id}" >${category.name}</option>
+											</c:forEach>
+										</select>
+					<a id="update" href="javascript:void(0)">Update Selected</a>
+					</div>
 					<table id="transactions">
 						<thead>
 							<tr valign="middle">
@@ -103,9 +141,17 @@ div.dataTables_info {
 						});
 				
 
+				$('#update').click(function() 
+						{
+					var category = $('#jd').val();
+					var anSelected = fnGetSelected( oTable );
+					var $row = $(anSelected);
+					var $sel = $row.find('select').val(category);
+					$row.find('select').trigger("change"); 
+						});				
 				
 				$('#transactions').hide();
-				$("#transactions").dataTable({
+				var oTable = $("#transactions").dataTable({
 					"iDisplayLength" : 20,
 					"bLengthChange" : false,
 					"bFilter" : true,
@@ -118,13 +164,26 @@ div.dataTables_info {
 					                null,
 					                null,
 					                { type: "text", bRegex:true }
-					               ]
+					               ]					               
 				});
+				    /* Add/remove class to a row when clicked on */
+				   $('#transactions tr').click( function() {
+				        $(this).toggleClass('row_selected');
+			        
+				    } );
+				     
 				
+
+								 				
 
 				$('#transactions').show();
 				        	 					
 			});
+			
+			function fnGetSelected( oTable )
+			{
+			    return oTable.$('tr.row_selected');
+			}
 		</script>
 </div>
 </html>
