@@ -16,9 +16,31 @@
 
 <style type="text/css">
 
+#nav {
+	color: black;
+	margin: auto;
+	text-align: center;
+}
+
+.footer {
+	background: #54301A;
+	background-color : black;
+	color: #ffffff;
+	clear: both;
+	font-size: 0.8em;
+	margin-top: 1.5em;
+	padding: 1em;
+	min-height: 1em;
+}
+
+#nav ul li:hover>ul {
+	background-color : #4F2E1A;
+	display: block;
+}
+
 .row_selected
 {
-	background-color: grey;
+	background-color: #cfcfcf;
 }
 
 #bollocks tr
@@ -55,24 +77,35 @@ div.dataTables_info {
 .dataTables_info {
 	float: left;
 }
+
+tr
+{
+	background-color : white;
+}
+
+td, th {
+border : 0;
+	border-color : #cfcfcf;
+
+}
 </style>
 </head>
 
 <%@ include file="/resources/jsp/test_menu.jsp"%>
 
 <div style="width: 1250px">
-		<table width="1250" class="jTPS">
+		<table id="main" width="1250" class="jTPS">
 			<tr>
 				<td style="width: 640px; max-width: 640px; overflow: hidden;" valign="top">
 					<h3 style="float: left; position: relative; width:100%; padding : 20px;">My Transactions</h3>
 					
 					<div style="float:right;">
+					Category : 
 					<select id="jd" >
-											<option value="-1" >None</option>
-											<c:forEach var="category" items="${form.allCategories}">
-												<option value="${category.id}" >${category.name}</option>
-											</c:forEach>
-										</select>
+						<c:forEach var="category" items="${form.allCategories}">
+							<option value="${category.id}" >${category.name}</option>
+						</c:forEach>
+					</select>
 					<a id="update" href="javascript:void(0)">Update Selected</a>
 					</div>
 					<table id="transactions">
@@ -148,11 +181,12 @@ div.dataTables_info {
 					var $row = $(anSelected);
 					var $sel = $row.find('select').val(category);
 					$row.find('select').trigger("change"); 
+					anSelected.trigger("click");
 						});				
 				
-				$('#transactions').hide();
+				$('#main').hide();
 				var oTable = $("#transactions").dataTable({
-					"iDisplayLength" : 20,
+					"iDisplayLength" : 15,
 					"bLengthChange" : false,
 					"bFilter" : true,
 					"aaSorting" : [ [ 0, "desc" ] ],
@@ -176,7 +210,7 @@ div.dataTables_info {
 
 								 				
 
-				$('#transactions').show();
+				$('#main').show();
 				        	 					
 			});
 			

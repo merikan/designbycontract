@@ -27,7 +27,7 @@
 </head>
 <body>
 
-	<div style="height:70px; width:1250px; background-color: #4F2E1A;" >
+	<div style="height:70px; width:1250px; background-color: black;" >
 		<a style="float:right" href="/mm/pages/dashboard/view"></a>
 	</div>
 
