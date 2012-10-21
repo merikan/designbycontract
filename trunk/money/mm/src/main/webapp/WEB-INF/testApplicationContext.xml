@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   		http://www.springframework.org/schema/context
+	   		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+			http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/data/jpa
+   			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+   			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.pool.OracleDataSource" />
+		<property name="url" value="jdbc:oracle:thin:@fastdevl0206.svr.emea.jpmchase.net:1540:ibci01d" />
+		<property name="username" value="IBCI_OWNER" />
+		<property name="password" value="ibci1234" />
+
+	</bean>
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.jpm.ib.model" />
+		<property name="jpaProperties">
+			<props>
+				<!-- <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+			</props>
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="false" />
+				<property name="databasePlatform" value="org.hibernate.dialect.Oracle9Dialect" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+		</property>
+	</bean>
+
+
+	<!-- Enable annotation driven transactions. -->
+	<tx:annotation-driven />
+
+	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans. For example @Controller 
+		and @Service. Make sure to set the correct base-package -->
+	<context:component-scan base-package="com.jpm.ib.service">
+		<context:include-filter type="assignable" expression="com.jpm.ib.service.feedback.FeedbackService" />
+		<context:exclude-filter type="assignable" expression="com.jpm.ib.service.ApplicationService" />
+	</context:component-scan>
+
+	<jpa:repositories base-package="com.jpm.ib.repository" />
+
+	<!-- Enable the @AspectJ support -->
+	<!-- <aop:aspectj-autoproxy/> -->
+	<!-- <bean id="profilingAspect" class="com.jpm.ib.util.ProfilingAspect" /> -->
+
+</beans>

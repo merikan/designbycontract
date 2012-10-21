@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: mm
+Bundle-SymbolicName: mm
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.dbc.mm.controller,
+ com.dbc.mm.form,
+ com.dbc.mm.interceptor,
+ com.dbc.mm.model,
+ com.dbc.mm.repository,
+ com.dbc.mm.service.category,
+ com.dbc.mm.service.transaction,
+ com.dbc.mm.service.user,
+ com.dbc.mm.util.aspects,
+ com.dbc.mm.util.test.annotation.type,
+ com.dbc.mm.vo
