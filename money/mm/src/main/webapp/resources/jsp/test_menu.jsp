@@ -5,7 +5,7 @@
 		<li class='active'><a href='/mm/pages/dashboard/view'><span>Dashboard</span></a></li>
 		<li class='has-sub'><a href='/mm/pages/report/view'><span>Report</span></a>
 			<ul>
-				<li><a href='/mm/pages/report/view'><span>Report</span></a></li>
+				<li><a href='/mm/pages/chart/view'><span>Chart</span></a></li>
 			</ul>
 		</li>
 		<span id="loggedOnUser">

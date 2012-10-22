@@ -97,7 +97,7 @@ border : 0;
 		<table id="main" width="1250" class="jTPS">
 			<tr>
 				<td style="width: 640px; max-width: 640px; overflow: hidden;" valign="top">
-					<h3 style="float: left; position: relative; width:100%; padding : 20px;">My Transactions</h3>
+					<h3 style="font-size:16px; float: left; position: relative; width:100%; padding-top : 20px; padding-bottom : 20px;">My Transactions</h3>
 					
 					<div style="float:right;">
 					Category : 
@@ -121,12 +121,12 @@ border : 0;
 								<th width="80px" align="left" valign="bottom">Category</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody style="vertical-align:center; height:40px;">
 							<c:forEach var="transaction" items="${form.allTransactions}">
 								<c:url value="/pages/triage/view" var="url">
 									<c:param name="id" value="${transaction.id}" />
 								</c:url>
-								<tr>
+								<tr style="vertical-align:center; height:40px; padding : 20px;">
 									<td><a href="<c:out value="${url}"/>">${transaction.id}</a></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${transaction.date}" /></td>
 									<td>${transaction.type}</td>
@@ -134,7 +134,7 @@ border : 0;
 									<td>${transaction.value}</td>									
 									<td>${transaction.accountName}</td>
 									<td>${transaction.accountNumber}</td>
-									<td>
+									<td style="vertical-align:top;">
 										<select class="trans" id="${transaction.id}" >
 											<option value="-1" >None</option>
 											<c:forEach var="category" items="${form.allCategories}">
@@ -197,7 +197,7 @@ border : 0;
 					                null,
 					                null,
 					                null,
-					                { type: "text", bRegex:true }
+					                { type: "select", bRegex:true }
 					               ]					               
 				});
 				    /* Add/remove class to a row when clicked on */

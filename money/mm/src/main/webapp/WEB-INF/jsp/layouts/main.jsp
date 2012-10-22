@@ -30,7 +30,8 @@
 	<div style="height:70px; width:1250px; background-color: black;" >
 		<a style="float:right" href="/mm/pages/dashboard/view"></a>
 	</div>
-
+	
+	<%@ include file="/resources/jsp/test_menu.jsp"%>
 	<decorator:body />
 
 	<div class="footer" align="center">
