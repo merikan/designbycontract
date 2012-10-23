@@ -99,8 +99,23 @@ div.dataTables_info {
 
 
 	<div id="container"
-		style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-
+		style="width: 500px; height: 400px; margin: 0 auto; padding-left:50px; float:left;"></div>
+		
+<div id="summary"
+		style="width: 500px; height: 400px; margin: 0 auto; float:right;">
+		<br/>
+		Category<br/>
+		Category<br/>
+		Category<br/>
+		Category<br/>
+		Category<br/>
+		Category<br/>
+		Category<br/>
+		Category<br/>
+		Category<br/>
+		
+</div>
+	
 
 
 
