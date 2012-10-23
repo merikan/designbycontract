@@ -29,8 +29,6 @@ div.dataTables_info {
 </style>
 </head>
 
-<%@ include file="/resources/jsp/test_menu.jsp"%>
-
 <div style="width: 1250px">
 		<table width="1250" class="jTPS">
 			<tr>

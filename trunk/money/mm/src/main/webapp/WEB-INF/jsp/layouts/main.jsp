@@ -34,10 +34,10 @@
 	<%@ include file="/resources/jsp/test_menu.jsp"%>
 	<decorator:body />
 
-	<div class="footer" align="center">
+	<div class="footer"  align="center">
 		Version 1.0 | Copyright © 2012 Design By Contract. All rights reserved.		
 	</div>
-	<div id="spinner" class="spinner" style="display: none;"></div>
+	<div id="spinner" class="spinner" style="background-color:black; display: none;"></div>
 
 </body>
 

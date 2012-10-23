@@ -34,19 +34,15 @@ public class DashboardController extends AbstractApplicationController {
 		logger.debug("**********");
 		
 		DashboardForm form = new DashboardForm();
+		
 		form.setAllCategories(categoryService.findAll());
 		form.setAllTransactions(transactionService.findAll());
+		
+		//form.setAllCategories(categories);
 		
 		return new ModelAndView("/dashboard/view_dashboard", "form", form);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/getChartData")  
-	@ResponseBody
-	public String getChartData(){
-		
-		return "[[\"Firefox\",45.0],[\"IE\",26.8],[\"Chrome\",12.8],[\"Saf\",8.5],[\"Opera\",6.2],[\"Others\",0.7]]";
-		
-	}
 	
 	
 	@RequestMapping(method=RequestMethod.POST, value="/updateTransaction")  
@@ -62,5 +58,5 @@ public class DashboardController extends AbstractApplicationController {
 	    return "value";
 	}
 	
-	
+
 }

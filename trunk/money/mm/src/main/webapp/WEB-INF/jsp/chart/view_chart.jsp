@@ -72,13 +72,9 @@ $(document).ready(function () {
 	
     chart = new Highcharts.Chart(options);
     var dataset = null;
-    $.post('/mm/pages/dashboard/getChartData', function(data,success) {
-    	  alert('Data' + data);
-    	  alert('Success' + success);
+    $.post('/mm/pages/chart/getChartData', function(data,success) {
     	    var a = jQuery.parseJSON(data);
-    	    alert('A' + a);
     	    chart.series[0].setData(a);
-
     	});
   
     

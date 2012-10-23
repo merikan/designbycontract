@@ -1,6 +1,5 @@
 package com.dbc.mm.controller;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +17,7 @@ import com.dbc.mm.form.ReportForm;
 import com.dbc.mm.model.Category;
 import com.dbc.mm.model.Transaction;
 import com.dbc.mm.service.category.CategoryService;
+import com.dbc.mm.service.report.ReportService;
 import com.dbc.mm.service.transaction.TransactionService;
 import com.dbc.mm.vo.ReportCategory;
 
@@ -32,6 +32,10 @@ public class ReportController extends AbstractApplicationController {
 	
 	@Autowired
 	CategoryService categoryService;
+	
+	
+	@Autowired
+	ReportService reportService;	
 
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
@@ -40,54 +44,15 @@ public class ReportController extends AbstractApplicationController {
 		
 		ReportForm form = new ReportForm();
 		List<Category> categories = categoryService.findAll();
-		List<Transaction> transactions = transactionService.findAll();
-		
+				
 		form.setAllCategories(categories);
 		
-		List<ReportCategory> reportCategories = new ArrayList<ReportCategory>();
-		for (Category category: categories)
-		{
-		
-			List<Transaction> t = getTransactionsForCategory(transactions, category);
-			
-			if (t.size() > 0)
-			{
-				logger.error("Adding " + category.getName());
-				ReportCategory rc = new ReportCategory();
-				rc.setCategory(category);
-				rc.setTransactions(t);
-				rc.setTotal(getTotal(t));
-				reportCategories.add(rc);
-			}
-		}
-		
+		List<ReportCategory> reportCategories = reportService.getReportCategories();
 		form.setCategories(reportCategories);		
 		
 		return new ModelAndView("/report/view_report", "form", form);
 	}
 	
-	private BigDecimal getTotal(List<Transaction> transactions) {
-		BigDecimal total = new BigDecimal(0);
-		for (Transaction t : transactions)
-		{
-			total = total.add(t.getValue());
-		}
-		return total;
-		
-	}
-
-	private List<Transaction> getTransactionsForCategory(List<Transaction> transactions, Category category) {
-		List<Transaction> tc = new ArrayList<Transaction>();
-		for (Transaction t : transactions)
-		{
-			Category c = t.getCategory();
-			if (c!=null && c.getId().equals(category.getId()))
-			{
-				tc.add(t);
-			}
-		}
-		return tc;
-	}
 
 	@RequestMapping(method=RequestMethod.POST, value="/updateTransaction")  
 	public @ResponseBody String getMovie(@RequestParam("transactionId") Long transactionId, @RequestParam("categoryId") Long categoryId, Model model){
