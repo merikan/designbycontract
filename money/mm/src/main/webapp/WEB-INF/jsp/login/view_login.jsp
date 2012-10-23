@@ -30,9 +30,7 @@
 				$("input", "#buttons").button();
 			});
 		</script>
-
-	<%@ include file="/resources/jsp/test_menu.jsp"%>
-		
+	
 		<form:form method="post" action="/mm/pages/login/submit" modelAttribute="form">
 			<div style="margin-left: auto ;  margin-right: auto ; padding-top:50px; padding-bottom:50px; width:600px; vertical-align: center" id="form">
 				<div style="width:100%; height:30px; font-size:15px;  color:red; float:left"> <c:out value="${form.message}"/></div>

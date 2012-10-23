@@ -91,8 +91,6 @@ border : 0;
 </style>
 </head>
 
-<%@ include file="/resources/jsp/test_menu.jsp"%>
-
 <div style="width: 1250px">
 		<table id="main" width="1250" class="jTPS">
 			<tr>
