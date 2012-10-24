@@ -166,6 +166,7 @@ border : 0;
 			});
 
 			$(document).ready(function() {
+				$('#transactions').hide();
 				$('.trans').change(function() 
 						{
 							$.post('/mm/pages/dashboard/updateTransaction?transactionId=' + $(this).attr('id') + "&categoryId=" + $(this).attr('value'));
@@ -182,9 +183,9 @@ border : 0;
 					anSelected.trigger("click");
 						});				
 				
-				$('#main').hide();
+
 				var oTable = $("#transactions").dataTable({
-					"iDisplayLength" : 15,
+					"iDisplayLength" : 12,
 					"bLengthChange" : false,
 					"bFilter" : true,
 					"aaSorting" : [ [ 0, "desc" ] ],
@@ -204,7 +205,7 @@ border : 0;
 			        
 				    } );
 
-				$('#main').show();
+				$('#transactions').show();
 				        	 					
 			});
 			
