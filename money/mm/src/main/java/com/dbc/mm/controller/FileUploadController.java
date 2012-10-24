@@ -46,6 +46,7 @@ public class FileUploadController {
 			CsvFileReader csvFileReader = new CsvFileReaderImpl();
 			List<Transaction> transactions = csvFileReader.getAllTransactions(isr, ",");
 			transactionService.save(transactions);
+			form.setMessage(transactions.size() + " transactions have been imported.");
 
 		} catch (IOException e) {
 			throw new RuntimeException();

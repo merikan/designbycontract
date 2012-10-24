@@ -19,10 +19,17 @@
 <link type="text/css" href="../../resources/framework/bootstrap/css/bootstrap.css" rel="Stylesheet" />
 <script type="text/javascript" src="../../resources/framework/bootstrap/js/bootstrap.js"></script>
 
+<style type="text/css">
+#nav_menu ul{
+margin-left : 0px;
+}
+</style>
+
 
 
 </head>
 <body>
+
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -32,8 +39,13 @@
 
 	<div style="width: 800px; margin-left: auto; margin-right: auto;">
 
-		<div style="height: 30px; font-size: 15px; color: green; ">
-		</div>
+		<c:if test="${form.message != null}">
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<c:out value="${form.message}" />
+			</div>
+		</c:if>
+
 
 		<form:form method="post" action="upload" modelAttribute="form" enctype="multipart/form-data">
 
@@ -43,15 +55,16 @@
 				</tr>
 				<tr>
 					<td width="50px;" align="left">File</td>
-					<td width="50px;" align="left"><form:input path="file" type="file"/></td>
+					<td width="50px;" align="left"><form:input path="file" type="file" /></td>
 					<td width="50px;" align="left"><button class="btn btn-inverse" type="submit">Upload</button></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>
-					<td colspan="3">Upload your transactions from a bank csv file.</th>
+					<td colspan="3">Upload your transactions from a bank csv file.
+					</th>
 				</tr>
-				
+
 			</table>
 		</form:form>
 	</div>
