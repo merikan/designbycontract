@@ -16,6 +16,11 @@
 
 <link rel="stylesheet" type="text/css" href="../../resources/css/jTPS.css">
 
+<link type="text/css" href="../../resources/framework/bootstrap/css/bootstrap.css" rel="Stylesheet" />
+<script type="text/javascript" src="../../resources/framework/bootstrap/js/bootstrap.js"></script>
+
+
+
 </head>
 <body>
 
@@ -34,17 +39,19 @@
 
 			<table class="form" style="width: 800px; margin-left: auto; margin-right: auto;">
 				<tr>
-					<th colspan="2">Upload Transactions</th>
+					<th colspan="4">Upload Transactions</th>
 				</tr>
 				<tr>
-					<td>File</td>
-					<td><form:input path="file" type="file"/></td>
+					<td width="50px;" align="left">File</td>
+					<td width="50px;" align="left"><form:input path="file" type="file"/></td>
+					<td width="50px;" align="left"><button class="btn btn-inverse" type="submit">Upload</button></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>
-					<input accesskey="" style="margin-left: 20px;" type="submit" value="Submit">
-				</td>
-				</tr>											
+					<td colspan="3">Upload your transactions from a bank csv file.</th>
+				</tr>
+				
 			</table>
 		</form:form>
 	</div>
