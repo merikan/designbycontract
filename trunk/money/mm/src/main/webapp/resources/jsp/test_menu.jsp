@@ -8,6 +8,7 @@
 				<li><a href='/mm/pages/chart/view'><span>Chart</span></a></li>
 			</ul>
 		</li>
+				<li class='active'><a href='/mm/pages/file/view'><span>Upload</span></a></li>
 		<span id="loggedOnUser">
 			<c:set var="user" value="${sessionScope.SESSION_STATE.loggedOnUser}" />
 			<a href='/icon/pages/logout/exit'>Logout</a> 
