@@ -203,10 +203,6 @@ border : 0;
 				        $(this).toggleClass('row_selected');
 			        
 				    } );
-				     
-				
-
-								 				
 
 				$('#main').show();
 				        	 					

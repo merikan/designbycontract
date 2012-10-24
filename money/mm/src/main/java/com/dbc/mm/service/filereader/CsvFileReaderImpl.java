@@ -2,6 +2,7 @@ package com.dbc.mm.service.filereader;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,11 +23,24 @@ public class CsvFileReaderImpl implements CsvFileReader {
 	public List<Transaction> getAllTransactions(String filename,
 			String delimiter) {
 		FileReader fileReader = getFileReader(filename);
+		
+		
+		
+		
 		CSVReader reader = new CSVReader(fileReader);
 		List<Transaction> transactions = getTransactions(reader);
 		return transactions;
 	}
 
+	@Override
+	public List<Transaction> getAllTransactions(InputStreamReader is, String delimiter) {
+
+		CSVReader reader = new CSVReader(is);
+		List<Transaction> transactions = getTransactions(reader);
+		return transactions;
+	}
+
+	
 	private List<Transaction> getTransactions(CSVReader reader) {
 		try {
 			List<String[]> myEntries = reader.readAll();
@@ -39,7 +53,7 @@ public class CsvFileReaderImpl implements CsvFileReader {
 	}
 
 	private List<Transaction> processLines(List<String[]> lines) {
-		List<Transaction> transactions = new ArrayList<>();
+		List<Transaction> transactions = new ArrayList<Transaction>();
 		for (String[] line : lines)
 		{
 			if (line.length == 8)
