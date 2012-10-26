@@ -1,98 +1,146 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="../../resources/css/jTPS.css">
-<link rel="stylesheet" type="text/css" href="../../resources/css/main.css">
-<script type="text/javascript" language="javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-
 
 <style type="text/css">
 
-#nav {
-	color: black;
-	margin: auto;
-	text-align: center;
-}
-
-.footer {
-	background: #54301A;
-	background-color : black;
-	color: #ffffff;
-	clear: both;
-	font-size: 0.8em;
-	margin-top: 1.5em;
-	padding: 1em;
-	min-height: 1em;
-}
-
-#nav ul li:hover>ul {
-	background-color : #4F2E1A;
-	display: block;
-}
-
-.row_selected
-{
-	background-color: #cfcfcf;
-}
-
-#bollocks tr
-{
-	color:black;
-	background-color: black;
-}
-
-#odd
-{
-	color:black;
-	background-color: black;
-}
-
-#row_selected
-
-even bollocks
-{
-	color:black;
+table.display tr.odd.gradeA {
 	background-color: black;
 }
 
 
-.bollocks tr
+table.display tr.even {
+	background-color: #eeffee;
+}
+
+.dataTables_info { padding-top: 0; }
+			.dataTables_paginate { padding-top: 0; }
+			.css_right { float: right; }
+			#example_wrapper .fg-toolbar { font-size: 0.8em }
+			#theme_links span { float: left; padding: 2px 10px; }
+
+.dataTables_filter {
+	width:20%;
+	vertical-align: left;
+}
+
+dataTables_filter {
+	width:20%;
+	vertical-align: left;
+}
+
+
+table
 {
-	color:black;
-	background-color: black;
-}
-
-div.dataTables_info {
-	float: left;
-}
-
-.dataTables_info {
-	float: left;
+	border:1 px;
 }
 
 tr
 {
 	background-color : white;
+	line-height : 10px;
 }
 
-td, th {
-border : 0;
-	border-color : #cfcfcf;
+tr even td
+{
+	background-color : black;
+	line-height : 12px;
+}
+
+
+td 
+{
+	font-size : 10px;
+	height:10px;
+}
+
+
+
 
 }
 </style>
+
+
+
+<%@ include file="/resources/jsp/imports.jspf"%>
+
+<script type="text/javascript">
+	jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+		"num-html-pre" : function(a) {
+			var x = a.replace(/<.*?>/g, "");
+			return parseFloat(x);
+		},
+
+		"num-html-asc" : function(a, b) {
+			return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+		},
+
+		"num-html-desc" : function(a, b) {
+			return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+		}
+	});
+
+	$(document).ready(function() {
+		$('#transactions').hide();
+		$('.trans').change(function() 
+				{
+					$.post('/mm/pages/dashboard/updateTransaction?transactionId=' + $(this).attr('id') + "&categoryId=" + $(this).attr('value'));
+				});
+		
+
+		$('#update').click(function() 
+				{
+			var category = $('#jd').val();
+			var anSelected = fnGetSelected( oTable );
+			var $row = $(anSelected);
+			var $sel = $row.find('select').val(category);
+			$row.find('select').trigger("change"); 
+			anSelected.trigger("click");
+				});				
+		
+
+		var oTable = $("#transactions").dataTable({
+			"iDisplayLength" : 10,
+			"bJQueryUI" : true,
+			"bLengthChange" : false,
+			"bFilter" : true,
+			"aaSorting" : [ [ 0, "desc" ] ],
+			"aoColumns" : [ {"sType" : "num-html"}, 
+			                null, 
+			                null, 
+			                { type: "text", bRegex:true }, 
+			                null,
+			                null,
+			                null,
+			                { type: "select", bRegex:true }
+			               ]					               
+		});
+		    /* Add/remove class to a row when clicked on */
+		   $('#transactions tr').click( function() {
+		        $(this).toggleClass('row_selected');
+	        
+		    } );
+
+		$('#transactions').show();
+		        	 					
+	});
+	
+	function fnGetSelected( oTable )
+	{
+	    return oTable.$('tr.row_selected');
+	}
+</script>
+
+
+
 </head>
 
-<div style="width: 1250px">
-		<table id="main" width="1250" class="jTPS">
+<div>
+		<table id="main" width="100%">
 			<tr>
 				<td style="width: 640px; max-width: 640px; overflow: hidden;" valign="top">
 					<h3 style="font-size:16px; float: left; position: relative; width:100%; padding-top : 20px; padding-bottom : 20px;">My Transactions</h3>
@@ -106,7 +154,7 @@ border : 0;
 					</select>
 					<a id="update" href="javascript:void(0)">Update Selected</a>
 					</div>
-					<table id="transactions">
+					<table class="display" id="transactions">
 						<thead>
 							<tr valign="middle">
 								<th width="40px" align="left" valign="bottom">Id</th>
@@ -149,70 +197,5 @@ border : 0;
 			</tr>
 		</table>
 				
-		<script type="text/javascript">
-			jQuery.extend(jQuery.fn.dataTableExt.oSort, {
-				"num-html-pre" : function(a) {
-					var x = a.replace(/<.*?>/g, "");
-					return parseFloat(x);
-				},
-
-				"num-html-asc" : function(a, b) {
-					return ((a < b) ? -1 : ((a > b) ? 1 : 0));
-				},
-
-				"num-html-desc" : function(a, b) {
-					return ((a < b) ? 1 : ((a > b) ? -1 : 0));
-				}
-			});
-
-			$(document).ready(function() {
-				$('#transactions').hide();
-				$('.trans').change(function() 
-						{
-							$.post('/mm/pages/dashboard/updateTransaction?transactionId=' + $(this).attr('id') + "&categoryId=" + $(this).attr('value'));
-						});
-				
-
-				$('#update').click(function() 
-						{
-					var category = $('#jd').val();
-					var anSelected = fnGetSelected( oTable );
-					var $row = $(anSelected);
-					var $sel = $row.find('select').val(category);
-					$row.find('select').trigger("change"); 
-					anSelected.trigger("click");
-						});				
-				
-
-				var oTable = $("#transactions").dataTable({
-					"iDisplayLength" : 12,
-					"bLengthChange" : false,
-					"bFilter" : true,
-					"aaSorting" : [ [ 0, "desc" ] ],
-					"aoColumns" : [ {"sType" : "num-html"}, 
-					                null, 
-					                null, 
-					                { type: "text", bRegex:true }, 
-					                null,
-					                null,
-					                null,
-					                { type: "select", bRegex:true }
-					               ]					               
-				});
-				    /* Add/remove class to a row when clicked on */
-				   $('#transactions tr').click( function() {
-				        $(this).toggleClass('row_selected');
-			        
-				    } );
-
-				$('#transactions').show();
-				        	 					
-			});
-			
-			function fnGetSelected( oTable )
-			{
-			    return oTable.$('tr.row_selected');
-			}
-		</script>
 </div>
 </html>

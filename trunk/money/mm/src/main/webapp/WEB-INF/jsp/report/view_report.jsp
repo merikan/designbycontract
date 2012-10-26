@@ -29,8 +29,8 @@ div.dataTables_info {
 </style>
 </head>
 
-<div style="width: 1250px">
-		<table width="1250" class="jTPS">
+<div style="width: 100%">
+		<table class="display">
 			<tr>
 				<td style="width: 640px; max-width: 640px; overflow: hidden;" valign="top">
 					<c:forEach var="reportCategory" items="${form.categories}">
