@@ -14,6 +14,23 @@ display: block;
 padding: 7px 20px;
 }
 
+#footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#999;
+   color : white;
+   background-color : black;
+}
+
+body
+{
+
+overflow-y: hidden ;
+}
+
 #nav_menu {
 	color: black;
 	margin: auto;

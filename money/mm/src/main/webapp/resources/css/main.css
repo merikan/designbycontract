@@ -119,8 +119,9 @@ body {
 	background: #ffffff;
 	color: #1B1B1C;
 	margin: 0 auto;
-	max-width: 1250px;
+	max-width: 1200px;
 	overflow-x: hidden;
+	overflow-y: hidden;
 	/* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
 	-moz-box-shadow: 0 0 0.3em #255b17;
 	-webkit-box-shadow: 0 0 0.3em #255b17;
@@ -219,7 +220,6 @@ img {
 }
 
 .spinner {
-	background: url(../images/spinner.gif) 50% 50% no-repeat transparent;
 	background-color : black;
 	height: 16px;
 	width: 16px;
