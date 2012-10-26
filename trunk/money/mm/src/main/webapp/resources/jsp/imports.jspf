@@ -1,0 +1,28 @@
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<script type="text/javascript" src="<c:url value="/resources/js/jquery/1.82/jquery-1.8.2.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/framework/datatables/js/jquery.dataTables.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/framework/highcharts/js/highcharts.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/framework/highcharts/js/modules/exporting.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/framework/bootstrap/js/bootstrap.js" />"></script>
+
+<%-- <link type="text/javascript" href="<c:url value="/resources/js/jquery/1.82/jquery-1.8.2.min.js" />"  />
+
+ --%>
+
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/framework/jquery/themes/custom/jquery-ui-1.7.2.custom.css" />"  />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/framework/jquery/themes/custom/demo_table_jui.css" />"  />
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/framework/bootstrap/css/bootstrap.css" />"  /> --%>
+
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/framework/datatables/css/jquery.dataTables.css" />"  /> --%>
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/test_menu_styles.css" />"  /> --%>
+
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/main.css" />"  /> --%>
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/table.css" />"  /> --%>
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/ui.all.css" />"  /> --%>
+
+
