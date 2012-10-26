@@ -9,16 +9,36 @@
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="../../resources/css/jTPS.css">
-<link rel="stylesheet" type="text/css" href="../../resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="../../resources/css/main.css">
-<script type="text/javascript" language="javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../resources/js/jquery/1.82/jquery.dataTables.editable.js"></script>
-<script type="text/javascript" src="../../resources/js/jquery/1.82/jquery.jeditable.js"></script>
-<script type="text/javascript" src="../../resources/js/jquery/1.82/jquery.validate.js"></script>
+<%@ include file="/resources/jsp/imports.jspf"%>
 
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<style type="text/css">
+
+body
+{
+
+overflow-y: hidden ;
+}
+
+
+table.display tr.even {
+	background-color: #eeffee;
+}
+
+tr
+{
+	background-color : white;
+	line-height : 10px;
+}
+
+td 
+{
+	height:10px;
+	font: 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+}
+</style>
+
 
 <script type="text/javascript">
 	var chart;
@@ -64,7 +84,7 @@
 		var oTable = $("#transactions").dataTable({
 			"iDisplayLength" : 15,
 			"bLengthChange" : false,
-			"bFilter" : false,
+			"bFilter" : true,
 			"aaSorting" : [ [ 0, "desc" ] ],
 			"aoColumns" : [ null, null, {
 				type : "text",
@@ -74,6 +94,11 @@
 				bRegex : true
 			} ]
 		});
+		
+		("#category_list").dataTable({
+			 "sPaginationType": "full_numbers"
+		});		
+		
 		$('#main').show();
 
 	});
@@ -89,41 +114,32 @@
 	}
 </script>
 
-
-<style type="text/css">
-div.dataTables_info {
-	float: left;
-}
-
-.dataTables_info {
-	float: left;
-}
-</style>
 </head>
 
 <div id="main">
 	<div id="lhs" style="width: 400px; height: 400px; margin-left: 10px;  float: left;">
 		<div id="container"></div>
-		<table width="300px">
-			<tbody>
+		<table id="category_list" class="display" width="400px">
+			<thead align="left">
 				<tr>
-					<th>Category</th>
+					<th >Category</th>
 					<th>Total</th>
-					<c:forEach var="reportCategory" items="${form.categories}">
-						<tr>
-							<td><a href="/mm/pages/chart/view?id=${reportCategory.category.id}">${reportCategory.category.name}</a></td>
-							<td>${reportCategory.total}</td>
-						</tr>
-					</c:forEach>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="reportCategory" items="${form.categories}">
+					<tr>
+						<td><a href="/mm/pages/chart/view?id=${reportCategory.category.id}">${reportCategory.category.name}</a></td>
+						<td>${reportCategory.total}</td>
+					</tr>
+				</c:forEach>
 			</tbody>
-
-
 		</table>		
 	</div>
 
 	<div id="summary" style="width: 800px; height: 800px; margin-left:10px;  margin-right: 10px; float: right;">
 
-		<table width="800px" id="transactions">
+		<table  class="display" width="800px" id="transactions">
 			<thead>
 				<tr valign="middle">
 					<th width="60px" align="left" valign="bottom">Date</th>
@@ -133,7 +149,7 @@ div.dataTables_info {
 					<th width="80px" align="left" valign="bottom">Category</th>
 				</tr>
 			</thead>
-			<tbody style="vertical-align: center; height: 40px;">
+			<tbody >
 				<c:forEach var="transaction" items="${form.allTransactions}">
 					<tr style="vertical-align: center; height: 40px; padding: 20px;">
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${transaction.date}" /></td>
@@ -153,8 +169,6 @@ div.dataTables_info {
 		</table>
 
 	</div>
-
 </div>
-
 
 </html>
