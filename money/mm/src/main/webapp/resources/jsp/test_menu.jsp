@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../../resources/css/test_menu_styles.css" type="text/css" />
 
-<div id="nav_menu">
-	<ul style="width: 100%">
+<div id="nav_menu" >
+	<ul style="width: 100%;">
 		<li class='active'><a href='/mm/pages/dashboard/view'><span>Dashboard</span></a></li>
 		<li class='has-sub'><a href='/mm/pages/report/view'><span>Report</span></a>
 			<ul>

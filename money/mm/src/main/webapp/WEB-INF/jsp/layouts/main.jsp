@@ -9,20 +9,22 @@
 
 <decorator:head />
 </head>
-<body >
+<body style="max-width:1200px;" >
 
-	<div style="height:70px; width:100%; background-color: black;" >
-		<a style="float:right" href="/mm/pages/dashboard/view"></a>
+	<div style="height:70px; line-height:70px; width:100%;  background-color: black;" >
+		
+		<div ><a style="top:50%; color:white; font-size:20px; vertical-align: left; text-decoration: none;"  href="/mm/pages/dashboard/view">ExpensesTracker.com</a></div>
 	</div>
 	
 	<%@ include file="/resources/jsp/test_menu.jsp"%>
 	
 	<decorator:body />
 
-	<div id="footer" class="footer" align="center">
+<div id="spinner" class="spinner" style="background-color:black; display: none;"></div>
+	<div style="width:100%;float:right;" id="footer" align="center">
 		Version 1.0 | Copyright © 2012 Design By Contract. All rights reserved.		
 	</div>
-	<div id="spinner" class="spinner" style="background-color:black; display: none;"></div>
+	
 
 </body>
 

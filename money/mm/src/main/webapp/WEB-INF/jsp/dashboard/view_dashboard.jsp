@@ -8,6 +8,7 @@
 
 <style type="text/css">
 
+
 table.display tr.odd.gradeA {
 	background-color: black;
 }
@@ -34,29 +35,7 @@ dataTables_filter {
 }
 
 
-table
-{
-	border:1 px;
-}
 
-tr
-{
-	background-color : white;
-	line-height : 10px;
-}
-
-tr even td
-{
-	background-color : black;
-	line-height : 12px;
-}
-
-
-td 
-{
-	font-size : 10px;
-	height:10px;
-}
 
 
 
@@ -108,6 +87,7 @@ td
 			"bJQueryUI" : true,
 			"bLengthChange" : false,
 			"bFilter" : true,
+			//"sDom": '<"toolbar">',
 			"aaSorting" : [ [ 0, "desc" ] ],
 			"aoColumns" : [ {"sType" : "num-html"}, 
 			                null, 
@@ -126,6 +106,9 @@ td
 		    } );
 
 		$('#transactions').show();
+		
+	    $("ui.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
+	
 		        	 					
 	});
 	
@@ -143,9 +126,9 @@ td
 		<table id="main" width="100%">
 			<tr>
 				<td style="width: 640px; max-width: 640px; overflow: hidden;" valign="top">
-					<h3 style="font-size:16px; float: left; position: relative; width:100%; padding-top : 20px; padding-bottom : 20px;">My Transactions</h3>
+					<h3 style="font-size:16px; margin-top : 0px; margin-bottom : 0px; float: left;">My Transactions</h3>
 					
-					<div style="float:right;">
+					<div style="position:absolute; float:right; left:900px; top:150px; z-index: 1000;">
 					Category : 
 					<select id="jd" >
 						<c:forEach var="category" items="${form.allCategories}">
