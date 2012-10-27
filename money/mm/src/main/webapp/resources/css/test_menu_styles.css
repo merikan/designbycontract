@@ -1,3 +1,12 @@
+
+#main_logo
+{
+	font-size : 18px;
+	color:white;
+	text-decoration: none;
+	padding-left:5px;
+}
+
 body
 {
 
@@ -73,11 +82,6 @@ padding: 7px 20px;
    background-color : black;
 }
 
-body
-{
-
-overflow-y: hidden ;
-}
 
 #nav_menu {
 	height:40px;
