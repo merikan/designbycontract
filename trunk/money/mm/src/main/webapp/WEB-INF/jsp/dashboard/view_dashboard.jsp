@@ -8,6 +8,29 @@
 
 <style type="text/css">
 
+#transactions
+{
+	border-left : solid;
+	border-width: 1px;
+	color : gray;
+	
+}
+
+thead
+{
+	border-left : solid;
+	border-width: 2px;
+	color : gray;
+	
+}
+
+DataTables_sort_wrapper
+{
+	border-left : solid;
+	border-width: 5px;
+	color : gray;
+
+}
 
 table.display tr.odd.gradeA {
 	background-color: black;
@@ -34,6 +57,13 @@ dataTables_filter {
 	vertical-align: left;
 }
 
+table dataTable
+{
+	border-left : solid;
+	border-width: 5px;
+	color : gray;
+	
+}
 
 
 
@@ -80,7 +110,6 @@ dataTables_filter {
 			$row.find('select').trigger("change"); 
 			anSelected.trigger("click");
 				});				
-		
 
 		var oTable = $("#transactions").dataTable({
 			"iDisplayLength" : 10,
@@ -89,6 +118,7 @@ dataTables_filter {
 			"bFilter" : true,
 			//"sDom": '<"toolbar">',
 			"aaSorting" : [ [ 0, "desc" ] ],
+			//"sDom": 'R<C><"#buttonPlaceholder">H<"clear"><"ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"lfr>t<"ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix"ip>',
 			"aoColumns" : [ {"sType" : "num-html"}, 
 			                null, 
 			                null, 
@@ -104,10 +134,10 @@ dataTables_filter {
 		        $(this).toggleClass('row_selected');
 	        
 		    } );
-
+		    
+		   $(".fg-toolbar").first().append($("#jd"));   
+		    
 		$('#transactions').show();
-		
-	    $("ui.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
 	
 		        	 					
 	});
@@ -128,18 +158,11 @@ dataTables_filter {
 				<td style="width: 640px; max-width: 640px; overflow: hidden;" valign="top">
 					<h3 style="font-size:16px; margin-top : 0px; margin-bottom : 0px; float: left;">My Transactions</h3>
 					
-					<div style="position:absolute; float:right; left:900px; top:150px; z-index: 1000;">
-					Category : 
-					<select id="jd" >
-						<c:forEach var="category" items="${form.allCategories}">
-							<option value="${category.id}" >${category.name}</option>
-						</c:forEach>
-					</select>
-					<a id="update" href="javascript:void(0)">Update Selected</a>
-					</div>
+					<div id="mytable">
+					
 					<table class="display" id="transactions">
-						<thead>
-							<tr valign="middle">
+						<thead style="border-style: solid; border-width : 1px;">
+							<tr style="border-left:solid; border-width : 1px;"valign="middle">
 								<th width="40px" align="left" valign="bottom">Id</th>
 								<th width="60px" align="left" valign="bottom">Date</th>
 								<th width="40px" align="left" valign="bottom">Type</th>
@@ -176,9 +199,21 @@ dataTables_filter {
 							</c:forEach>
 						</tbody>
 					</table>
+					</div>
 				</td>
 			</tr>
 		</table>
+
+</div>
+<div id="jd" style="float:right; width:300px; ">
+Category : 
+<select >
+	<c:forEach var="category" items="${form.allCategories}">
+		<option value="${category.id}" >${category.name}</option>
+	</c:forEach>
+</select>
+<a id="update" href="javascript:void(0)">Update Selected</a>
+</div>
 				
 </div>
 </html>

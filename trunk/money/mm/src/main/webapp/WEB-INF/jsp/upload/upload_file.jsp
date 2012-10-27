@@ -19,6 +19,10 @@
 <link type="text/css" href="../../resources/framework/bootstrap/css/bootstrap.css" rel="Stylesheet" />
 <script type="text/javascript" src="../../resources/framework/bootstrap/js/bootstrap.js"></script>
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
 <style type="text/css">
 #nav_menu ul{
 margin-left : 0px;
@@ -35,7 +39,30 @@ margin-left : 0px;
 		$(document).ready(function() {
 			$("#report").button();
 		});
+		
+		
+		$(function() {
+	        $( "#dialog-message" ).dialog({
+	            modal: true,
+	            buttons: {
+	                Ok: function() {
+	                    $( this ).dialog( "close" );
+	                }
+	            }
+	        });
+	    });
+		
 	</script>
+	
+	<div id="dialog-message" title="Download complete">
+    <p>
+        <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
+        Your files have downloaded successfully into the My Downloads folder.
+    </p>
+    <p>
+        Currently using <b>36% of your storage space</b>.
+    </p>
+</div>
 
 	<div style="width: 800px; margin-left: auto; margin-right: auto;">
 
@@ -67,6 +94,11 @@ margin-left : 0px;
 
 			</table>
 		</form:form>
+	</div>
+	<div id="pop">
+	daslkdsfklklfds
+	fdsdfsklfdksl
+	fdslfl;dsl;dfs
 	</div>
 </body>
 </html>

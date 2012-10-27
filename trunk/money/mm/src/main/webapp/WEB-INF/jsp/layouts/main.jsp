@@ -8,12 +8,16 @@
 <title><decorator:title default="mm" /></title>
 
 <decorator:head />
+
 </head>
+
 <body style="max-width:1200px;" >
 
-	<div style="height:70px; line-height:70px; width:100%;  background-color: black;" >
-		
-		<div ><a style="top:50%; color:white; font-size:20px; vertical-align: left; text-decoration: none;"  href="/mm/pages/dashboard/view">ExpensesTracker.com</a></div>
+
+	<div style="height:70px; line-height:70px; width:100%;  background-color: black;" >		
+		<div id="main_logo">
+			<a  id="main_logo" href="/mm/pages/dashboard/view">ExpensesTracker.com</a>
+		</div>
 	</div>
 	
 	<%@ include file="/resources/jsp/test_menu.jsp"%>
