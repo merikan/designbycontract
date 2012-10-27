@@ -1,5 +1,53 @@
+body
+{
+
+}
+
+table
+{
+	border:1 px;
+}
+
+tr
+{
+	background-color : white;
+	line-height : 30px;
+}
+
+tr even td
+{
+	background-color : black;
+	line-height : 12px;
+}
+
+
+td 
+{
+	font-size : 12px;
+	height:10px;
+}
+
+
+table.display tr.even {
+	background-color: #eeffee;
+}
+
+tr
+{
+	background-color : white;
+	line-height : 20px;
+}
+
+td 
+{
+	height:10px;
+	font: 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+
 #loggedOnUser a{
-color: #757575;
+color: black;;
 display: inline;
 font-family: serif;
 font-size: 13px;
@@ -15,11 +63,11 @@ padding: 7px 20px;
 }
 
 #footer {
-   position:fixed;
    left:0px;
-   bottom:0px;
    height:30px;
-   width:100%;
+   font-size : 10px;
+   text-align : center;
+   width:1200px;
    background:#999;
    color : white;
    background-color : black;
@@ -32,6 +80,8 @@ overflow-y: hidden ;
 }
 
 #nav_menu {
+	height:40px;
+	margin-top:0px;
 	color: black;
 	margin: auto;
 	text-align: center;
@@ -41,6 +91,10 @@ overflow-y: hidden ;
 	display: none;
 }
 
+#nav_menu ul a {
+	color: black;
+}
+
 #nav_menu ul li:hover>ul {
 	background-color : #4F2E1A;
 	display: block;
@@ -48,6 +102,7 @@ overflow-y: hidden ;
 
 #nav_menu ul {
 	margin-left:0px;
+	margin-top : 0px;
 	color: black;
 	background: #efefef;
 	background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
@@ -68,7 +123,7 @@ overflow-y: hidden ;
 }
 
 #nav_menu ul li {
-
+	color:black;
 	float: left;
 }
 
@@ -90,8 +145,9 @@ overflow-y: hidden ;
 	width : 150px;
 	display: block;
 	padding: 7px 0px;
-	color: #757575;
+	color: black;
 	text-decoration: none;
+	border:thin;
 }
 
 #nav_menu ul ul {
