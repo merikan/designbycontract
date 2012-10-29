@@ -20,6 +20,21 @@
 	height:20px;
 }
 
+th
+{
+	border-style:solid; 
+	border-width : 1px; 
+	border-left-color: gray;
+}
+
+tr 
+{
+	border-left : solid;
+		border-right : solid;
+	border-width: 1px;
+	border-color : gray;
+	
+}
 
 
 </style>
@@ -172,11 +187,11 @@
 	<table class="display" width="700px" id="transactions">
 		<thead>
 			<tr valign="middle">
-				<th width="80px" align="left" valign="bottom">Date</th>
+				<th style="border-left:solid; border-width : 1px; border-left-color: gray" width="80px" align="left" valign="bottom">Date</th>
 				<th width="30px" align="left" valign="bottom">Type</th>
 				<th width="350px" align="left" valign="bottom">Description</th>
 				<th width="120px" align="center" valign="bottom">Value</th>
-				<th width="80px" align="left" valign="bottom">Category</th>
+				<th style="border-right:solid; border-width : 1px; border-right-color: gray" width="80px" width="80px" align="left" valign="bottom">Category</th>
 			</tr>
 		</thead>
 		<tbody>

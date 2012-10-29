@@ -8,67 +8,24 @@
 
 <style type="text/css">
 
-#transactions
+
+
+tr 
 {
 	border-left : solid;
+		border-right : solid;
 	border-width: 1px;
-	color : gray;
+border-color : gray;
 	
 }
 
-thead
-{
-	border-left : solid;
-	border-width: 2px;
-	color : gray;
-	
-}
 
-DataTables_sort_wrapper
-{
-	border-left : solid;
-	border-width: 5px;
-	color : gray;
-
-}
-
-table.display tr.odd.gradeA {
-	background-color: black;
-}
-
-
-table.display tr.even {
-	background-color: #eeffee;
-}
 
 .dataTables_info { padding-top: 0; }
 			.dataTables_paginate { padding-top: 0; }
 			.css_right { float: right; }
 			#example_wrapper .fg-toolbar { font-size: 0.8em }
 			#theme_links span { float: left; padding: 2px 10px; }
-
-.dataTables_filter {
-	width:20%;
-	vertical-align: left;
-}
-
-dataTables_filter {
-	width:20%;
-	vertical-align: left;
-}
-
-table dataTable
-{
-	border-left : solid;
-	border-width: 5px;
-	color : gray;
-	
-}
-
-
-
-
-
 
 }
 </style>
@@ -136,8 +93,12 @@ table dataTable
 		    } );
 		    
 		   $(".fg-toolbar").first().append($("#jd"));   
-		    
+		   
+		   /* $(".th").css("border-style","solid");
+		   $(".th").css("border-width","2px");
+		    */ 
 		$('#transactions').show();
+		
 	
 		        	 					
 	});
@@ -161,16 +122,16 @@ table dataTable
 					<div id="mytable">
 					
 					<table class="display" id="transactions">
-						<thead style="border-style: solid; border-width : 1px;">
-							<tr style="border-left:solid; border-width : 1px;"valign="middle">
-								<th width="40px" align="left" valign="bottom">Id</th>
+						<thead >
+							<tr>
+								<th style="border-left:solid; border-width : 1px; border-left-color: gray" width="40px" align="left" valign="bottom">Id</th>
 								<th width="60px" align="left" valign="bottom">Date</th>
 								<th width="40px" align="left" valign="bottom">Type</th>
 								<th width="250px" align="left" valign="bottom">Description</th>
 								<th width="120px" align="center" valign="bottom">Value</th>
 								<th width="120px" align="left" valign="bottom">Account Name</th>
 								<th width="80px" align="left" valign="bottom">Account Number</th>
-								<th width="80px" align="left" valign="bottom">Category</th>
+								<th style="border-right:solid; border-width : 1px; border-right-color: gray" width="80px" align="left" valign="bottom">Category</th>
 							</tr>
 						</thead>
 						<tbody style="vertical-align:center; height:40px;">
