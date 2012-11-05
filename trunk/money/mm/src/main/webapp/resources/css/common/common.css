@@ -1,0 +1,77 @@
+input,textarea {
+	width: 150px;
+}
+
+.simple tbody {
+
+	
+}
+
+
+td {
+	font: normal 13px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+div .dataTables_filter {
+	position: relative;
+	line-height: 20px;
+	height: 15px;
+	padding-top: 0px;
+	float: left;
+}
+
+table,td {
+	font: small/1.5 "Tahoma", "Bitstream Vera Sans", Verdana, Helvetica, sans-serif;
+}
+
+table {
+	border: none;
+	width:100%;
+	border-collapse: collapse;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-color : #c9c9c9;
+}
+
+table.form {
+	background: rgb(254, 255, 255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(204, 204, 204, 1) 0%, rgba(204, 204, 249, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(204, 204, 204, 1) ),
+		color-stop(100%, rgba(204, 204, 204, 1) ) );
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(204, 204, 204, 1) 0%, rgba(204, 204, 204, 1) 100% );
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(204, 204, 204, 1) 0%, rgba(204, 204, 204, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(204, 204, 204, 1) 0%, rgba(204, 204, 204, 1) 100% ); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(204, 204, 204, 1) 0%, rgba(204, 204, 204, 1) 100% ); /* W3C */
+}
+
+thead th {
+	color: #666;
+	padding: 5px 10px;
+}
+
+tbody tr td {
+	padding: 5px 10px;
+	color: #666;
+	border-color: gray;
+	border-style: none;
+	line-height: 30px;
+	list-style: none;
+	padding: 5px 10px;
+	margin-bottom: 2px;
+}
+
+td {
+	height: 80%;
+	white-space: nowrap;
+}
+
+caption {
+	text-align: left;
+	font-size: 120%;
+	padding: 10px 0;
+	color: #666;
+}
