@@ -5,29 +5,10 @@
 <html>
 
 <head>
-
+<%@ include file="/resources/jsp/taglibs.jspf"%>
 <style type="text/css">
 
 
-
-tr 
-{
-	border-left : solid;
-		border-right : solid;
-	border-width: 1px;
-border-color : gray;
-	
-}
-
-
-
-.dataTables_info { padding-top: 0; }
-			.dataTables_paginate { padding-top: 0; }
-			.css_right { float: right; }
-			#example_wrapper .fg-toolbar { font-size: 0.8em }
-			#theme_links span { float: left; padding: 2px 10px; }
-
-}
 </style>
 
 
@@ -121,7 +102,7 @@ border-color : gray;
 					
 					<div id="mytable">
 					
-					<table class="display" id="transactions">
+					<table class="simple display" id="transactions">
 						<thead >
 							<tr>
 								<th style="border-left:solid; border-width : 1px; border-left-color: gray" width="40px" align="left" valign="bottom">Id</th>
@@ -144,7 +125,7 @@ border-color : gray;
 									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${transaction.date}" /></td>
 									<td>${transaction.type}</td>
 									<td style="max-width:250px; width:250px; white-space: nowrap; overflow:hidden;">${transaction.description}</td>
-									<td>${transaction.value}</td>									
+									<td align="right">${transaction.value}</td>									
 									<td>${transaction.accountName}</td>
 									<td>${transaction.accountNumber}</td>
 									<td style="vertical-align:top;">
@@ -155,7 +136,6 @@ border-color : gray;
 											</c:forEach>
 										</select>
 									</td>
-
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -166,7 +146,7 @@ border-color : gray;
 		</table>
 
 </div>
-<div id="jd" style="float:right; width:300px; ">
+<div id="jd" style="float:right; width:300px; vertical-align:middle; padding-right:100px;">
 Category : 
 <select >
 	<c:forEach var="category" items="${form.allCategories}">

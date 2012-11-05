@@ -19,17 +19,25 @@
    			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
    			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="mysqlDataSource" primary="true" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://mysql-johndobie.j.layershift.co.uk/mm" />
+		<property name="username" value="root" />
+		<property name="password" value="koUyy2SMXY" />
+	</bean>	
+
+	<bean id="mysqlLocalDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/mm" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>	
 	
+	
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="mysqlDataSource" />
+		<property name="dataSource" ref="mysqlLocalDataSource" />
 		<property name="packagesToScan" value="com.dbc.mm.model" />
 		<property name="jpaProperties">
 			<props>
