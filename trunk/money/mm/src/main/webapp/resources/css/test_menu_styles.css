@@ -76,10 +76,12 @@ padding: 7px 20px;
    height:30px;
    font-size : 10px;
    text-align : center;
-   width:1200px;
+   width:100%;
+   float:left;
    background:#999;
    color : white;
    background-color : black;
+   margin-top:20px;
 }
 
 
