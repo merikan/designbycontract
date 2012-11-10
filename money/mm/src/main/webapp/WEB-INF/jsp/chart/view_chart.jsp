@@ -147,13 +147,13 @@ border-collapse: separate;
 
 <body>
 
-	<div id="lhs" style="margin-left : 20px; width: 400px; height: 400px; float: left; ">
+	<div id="lhs" style="margin-left : 20px; width: 400px; height: 100%; float: left; ">
 		<div style="margin-bottom : 20px; margin-top : 5px; width: 400px; height: 400px; float: left; border-style: solid; border-width: 1px;" id="container">
 			<div style="width : 200px;">
 				<a style="float: left; width: 50px" id="showchart" href="javascript:void(0)">Enlarge</a>
 			</div>
 		</div>
-		<div style="">
+		<div>
 			<table id="categoryList" class="simple display" width="400px">
 				<thead align="left">
 					<tr>

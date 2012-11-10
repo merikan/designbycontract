@@ -204,31 +204,7 @@ img {
 	font-weight: bold;
 }
 
-.footer {
-	background-color :black;
-	color: #ffffff;
-	clear: both;
-	font-size: 10px;
-	margin-top: 1.5em;
-	padding: 1em;
-	min-height: 1em;
-}
 
-.footer a {
-	background-color :black;
-	color: #ffffff;
-}
-
-.spinner {
-	background-color : black;
-	height: 16px;
-	width: 16px;
-	padding: 0.5em;
-	position: absolute;
-	right: 0;
-	top: 0;
-	text-indent: -9999px;
-}
 
 /* NAVIGATION MENU */
 .nav {
