@@ -1,10 +1,14 @@
 package com.dbc.mm.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -17,6 +21,9 @@ public class User {
 	private String surname;
 	private String displayName;
 
+	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+	private Set<Account> accounts;
+	
 	public Long getId() {
 		return id;
 	}
@@ -47,6 +54,14 @@ public class User {
 
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
+	}
+
+	public Set<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Set<Account> accounts) {
+		this.accounts = accounts;
 	}
 
 }

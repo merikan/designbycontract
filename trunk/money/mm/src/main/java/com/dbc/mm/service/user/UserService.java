@@ -7,4 +7,6 @@ import com.dbc.mm.model.User;
 public interface UserService {
 
 	public List<User> getAllUsers();
+
+	User findOne(Long id);
 }

@@ -80,9 +80,9 @@
 
 	<!-- The properties are not loaded correctly in tests. hard coded for now. -->
 	<!-- https://jira.springsource.org/browse/SPR-9011 -->
-<!-- 	<mvc:interceptors>
+ 	<mvc:interceptors>
 		<bean class="com.dbc.mm.interceptor.DevelopmentSecurityInterceptorImpl"/>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 
 	<!-- Enable the @AspectJ support -->
 	<aop:aspectj-autoproxy/>
