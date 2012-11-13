@@ -1,7 +1,5 @@
 package com.dbc.mm.interceptor;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,7 +18,7 @@ public class DevelopmentSecurityInterceptorImpl extends HandlerInterceptorAdapte
 	@Autowired
 	private UserService userService;
 
-	private String defaultSid;
+	private String DEFAULT_ID = "1";
 	
 	public Logger logger = Logger.getLogger(DevelopmentSecurityInterceptorImpl.class);
 
@@ -31,32 +29,33 @@ public class DevelopmentSecurityInterceptorImpl extends HandlerInterceptorAdapte
 		SessionState state = (SessionState) request.getSession().getAttribute(SessionState.SESSION_STATE);
 		if (null == state)
 		{
-			String requestSid = getUserFromRequest(request);
-			if (requestSid != null)
+			String id = getUserFromRequest(request);
+			if (id != null)
 			{
-				setUser(request, requestSid);	
+				setUser(request, id);	
 			}
-			setUser(request, defaultSid);
+			setUser(request, DEFAULT_ID);
 		}
 		return super.preHandle(request, response, handler);
 	}
 
 	private String getUserFromRequest(HttpServletRequest request) {
-		String s = (String) request.getParameter("sid");
-		logger.debug("SID Found in Request" + s);
+		String s = (String) request.getParameter("id");
+		logger.debug("ID Found in Request" + s);
 		return s;
 	}
 
-	private void setUser(HttpServletRequest request, String sid) {
-		sid = sid.toUpperCase();
-		logger.info("Setting the user to " + sid);
-		List<User> user = userService.getAllUsers();
+	private void setUser(HttpServletRequest request, String id) {
+		
+		id = id.toUpperCase();
+		logger.info("Setting the user to " + id);
+		User user = userService.findOne(new Long(id));
 		if (user == null)
 		{
-			throw new RuntimeException("There is no user in system with the SID " + sid);
+			throw new RuntimeException("There is no user in system with the ID " + id);
 		}
 		SessionState state = new SessionState();
-		state.setLoggedOnUser(user.get(0));
+		state.setLoggedOnUser(user);
 		request.getSession().setAttribute(SessionState.SESSION_STATE, state);
 	}
 
@@ -74,11 +73,4 @@ public class DevelopmentSecurityInterceptorImpl extends HandlerInterceptorAdapte
 		super.afterCompletion(request, response, handler, ex);
 	}
 
-	public String getDefaultSid() {
-		return defaultSid;
-	}
-
-	public void setDefaultSid(String defaultSid) {
-		this.defaultSid = defaultSid;
-	}
 }

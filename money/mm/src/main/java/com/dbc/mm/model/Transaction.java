@@ -40,6 +40,11 @@ public class Transaction {
 	@JoinColumn(name="category_id", referencedColumnName = "category_id")
 	private Category category;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="account_id")
+	private Account account;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -93,6 +98,12 @@ public class Transaction {
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 	
 }
