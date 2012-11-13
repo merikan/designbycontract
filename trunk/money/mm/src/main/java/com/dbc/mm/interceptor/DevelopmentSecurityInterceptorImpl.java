@@ -48,7 +48,7 @@ public class DevelopmentSecurityInterceptorImpl extends HandlerInterceptorAdapte
 	private void setUser(HttpServletRequest request, String id) {
 		
 		id = id.toUpperCase();
-		logger.info("Setting the user to " + id);
+		logger.error("Setting the user to " + id);
 		User user = userService.findOne(new Long(id));
 		if (user == null)
 		{
