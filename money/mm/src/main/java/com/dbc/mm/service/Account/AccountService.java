@@ -11,6 +11,10 @@ public interface AccountService {
 
 	Account save(Account account);
 
-	List<Account> findByUser(User user);	
+	List<Account> findByUser(User user);
+
+	Account findOne(Long accountId);
+
+	Account getDefaultAccount(User user);	
 
 }

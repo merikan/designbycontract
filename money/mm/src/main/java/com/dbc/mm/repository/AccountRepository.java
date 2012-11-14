@@ -12,5 +12,7 @@ import com.dbc.mm.model.User;
 public interface AccountRepository extends JpaRepository<Account, Long>{
 
 	public List<Account> findByUser(User user);
+	public Account findByUserAndDefaultAccount(User user, boolean defaultAccount);
+	
 	
 }
