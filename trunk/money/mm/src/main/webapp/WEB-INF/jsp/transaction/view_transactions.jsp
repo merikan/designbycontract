@@ -32,22 +32,30 @@
 	});
 
 	$(document).ready(function() {
-		$('#transactions').hide();
-		$('.trans').change(function() 
-				{
-					$.post('/mm/pages/dashboard/updateTransaction?transactionId=' + $(this).attr('id') + "&categoryId=" + $(this).attr('value'));
-				});
 		
-
 		$('#update').click(function() 
 				{
-			var category = $('#jd').val();
+			var category = $('#mainCategory').val();
+			alert(category);
 			var anSelected = fnGetSelected( oTable );
 			var $row = $(anSelected);
 			var $sel = $row.find('select').val(category);
 			$row.find('select').trigger("change"); 
 			anSelected.trigger("click");
 				});				
+
+		
+		$('.trans').change(function() 
+				{
+					$.post('/mm/pages/transaction/updateTransaction?transactionId=' + $(this).attr('id') + "&categoryId=" + $(this).attr('value'));
+				});
+
+	    /* Add/remove class to a row when clicked on */
+		   $('#transactions tr').click( function() {
+		        $(this).toggleClass('row_selected');
+	        
+		    } );
+
 
 		var oTable = $("#transactions").dataTable({
 			"iDisplayLength" : 10,
@@ -67,18 +75,12 @@
 			                { type: "select", bRegex:true }
 			               ]					               
 		});
-		    /* Add/remove class to a row when clicked on */
-		   $('#transactions tr').click( function() {
-		        $(this).toggleClass('row_selected');
-	        
-		    } );
 		    
 		   $(".fg-toolbar").first().append($("#jd"));   
 		   
 		   /* $(".th").css("border-style","solid");
 		   $(".th").css("border-width","2px");
 		    */ 
-		$('#transactions').show();
 		
 	
 		        	 					
@@ -148,7 +150,7 @@
 </div>
 <div id="jd" style="float:right; width:300px; vertical-align:middle; padding-right:100px;">
 Category : 
-<select >
+<select id="mainCategory">
 	<c:forEach var="category" items="${form.allCategories}">
 		<option value="${category.id}" >${category.name}</option>
 	</c:forEach>
