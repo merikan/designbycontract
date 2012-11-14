@@ -47,11 +47,11 @@ public class ChartController extends AbstractApplicationController {
 		ChartForm form = new ChartForm();
 		Account account = new UserContextHolder().currentSecurityContext().getAccount();
 		
-		form.setAllTransactions(transactionService.findByAccount(account));
+		//form.setAllTransactions(transactionService.findByAccount(account));
 
-		populateForm(form);
+		//populateForm(form);
 
-		return new ModelAndView("/chart/view_chart", "form", form);
+		return new ModelAndView("/chart/view_pie_chart", "form", form);
 	}
 
 	@RequestMapping(value = "/viewBarChart", method = RequestMethod.GET)
@@ -75,22 +75,6 @@ public class ChartController extends AbstractApplicationController {
 		List<ReportCategory> reportCategories = reportService.getReportCategories();
 		form.setCategories(reportCategories);
 	}
-
-	
-	@RequestMapping(value = "/viewById", method = RequestMethod.GET)
-	public ModelAndView viewById(@RequestParam(value = "id", required = true) Long categoryId) {
-
-		ChartForm form = new ChartForm();
-		Account account = new UserContextHolder().currentSecurityContext().getAccount();
-		
-		Category category = categoryService.findById(categoryId);
-		form.setAllTransactions(transactionService.findByAccountAndCategory(account, category));
-
-		populateForm(form);
-
-		return new ModelAndView("/chart/view_chart", "form", form);
-	}
-
 	
 	@RequestMapping(value = "/viewByAccount", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam(value = "accountId", required = true) Long accountId) {

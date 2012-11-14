@@ -132,7 +132,6 @@
 									<td>${transaction.accountNumber}</td>
 									<td style="vertical-align:top;">
 										<select class="trans" id="${transaction.id}" >
-											<option value="-1" >None</option>
 											<c:forEach var="category" items="${form.allCategories}">
 												<option value="${category.id}" ${category.id == transaction.category.id ? 'selected' : ''}>${category.name}</option>
 											</c:forEach>
