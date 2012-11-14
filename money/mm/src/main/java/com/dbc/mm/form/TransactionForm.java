@@ -4,11 +4,14 @@ import java.util.List;
 
 import com.dbc.mm.model.Category;
 import com.dbc.mm.model.Transaction;
-
+import com.dbc.mm.vo.ReportCategory;
 
 public class TransactionForm {
-	
+
 	private List<Transaction> allTransactions;
+	private List<ReportCategory> categories;
+	private List<Category> allCategories;
+
 	public List<Category> getAllCategories() {
 		return allCategories;
 	}
@@ -17,7 +20,13 @@ public class TransactionForm {
 		this.allCategories = allCategories;
 	}
 
-	private List<Category> allCategories;
+	public List<ReportCategory> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<ReportCategory> allCategories) {
+		this.categories = allCategories;
+	}
 
 	public List<Transaction> getAllTransactions() {
 		return allTransactions;
@@ -26,7 +35,4 @@ public class TransactionForm {
 	public void setAllTransactions(List<Transaction> allTransactions) {
 		this.allTransactions = allTransactions;
 	}
-	
-
-
 }
