@@ -6,11 +6,12 @@ import java.util.List;
 import com.dbc.mm.model.Category;
 import com.dbc.mm.model.Transaction;
 
-public class ReportCategory {
+public class ReportCategory implements Comparable<ReportCategory>{
 	
 	private Category category;
 	private List<Transaction> transactions;
 	private BigDecimal total;
+	
 	public Category getCategory() {
 		return category;
 	}
@@ -30,6 +31,12 @@ public class ReportCategory {
 		this.total = total;
 	}
 	
+	@Override
+	public int compareTo(ReportCategory o) {
+		return this.getTotal().compareTo(o.getTotal());
+	}
 
+
+	
 
 }

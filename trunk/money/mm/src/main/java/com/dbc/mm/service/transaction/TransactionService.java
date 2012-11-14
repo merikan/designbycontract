@@ -19,4 +19,6 @@ public interface TransactionService {
 
 	List<Transaction> findByAccount(Account account);
 
+	List<Transaction> findByAccountAndCategory(Account account, Category category);
+
 }

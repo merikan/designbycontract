@@ -49,5 +49,11 @@ public class TransactionServiceImpl implements TransactionService {
 	{
 		return transactionRepository.findByAccount(account);
 	}
+	
+	@Override	
+	public List<Transaction> findByAccountAndCategory(Account account, Category category)
+	{
+		return transactionRepository.findByAccountAndCategory(account, category);
+	}
 }
 
