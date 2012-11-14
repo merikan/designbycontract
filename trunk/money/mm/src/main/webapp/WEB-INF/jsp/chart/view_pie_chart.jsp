@@ -23,7 +23,7 @@
 				"shadow" : true,
 			} ],
 			"title" : {
-				"text" : null
+				"text" : "Spending By Category"
 			},
 			"legend" : {
 				"layout" : "vertical",
@@ -36,8 +36,6 @@
 			},
 			"chart" : {
 				"renderTo" : "container",
-				"width" : "600",
-				"height" : "600"
 			},
 			"credits" : {
 				"enabled" : false
@@ -65,6 +63,6 @@
 
 <body>
 
-	<div id="container" style="  margin-left: auto ;  margin-right: auto; width :800px; height : 100%; "></div>
+	<div id="container" style="border-style: solid; border-width: 1px;  margin-left: auto ;  margin-right: auto; width :600px; height : 600px; "></div>
 
 </body>
