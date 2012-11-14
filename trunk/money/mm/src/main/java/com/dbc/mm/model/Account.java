@@ -22,6 +22,8 @@ public class Account {
 
 	@NotNull
 	private String name;
+	
+	private boolean defaultAccount;
 
 	private String description;
 
@@ -55,6 +57,14 @@ public class Account {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isDefaultAccount() {
+		return defaultAccount;
+	}
+
+	public void setDefaultAccount(boolean defaultAccount) {
+		this.defaultAccount = defaultAccount;
 	}
 
 }

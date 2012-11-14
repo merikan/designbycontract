@@ -31,4 +31,14 @@ public class AccountServiceImpl implements AccountService {
 	public List<Account> findByUser(User user) {
 		return accountRepository.findByUser(user);
 	}
+	
+	@Override
+	public Account findOne(Long accountId) {
+		return accountRepository.findOne(accountId);
+	}
+
+	@Override
+	public Account getDefaultAccount(User user) {
+		return accountRepository.findByUserAndDefaultAccount(user, true);
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dbc.mm.model.Account;
 import com.dbc.mm.model.Category;
 import com.dbc.mm.model.Transaction;
 import com.dbc.mm.repository.TransactionRepository;
@@ -41,6 +42,12 @@ public class TransactionServiceImpl implements TransactionService {
 	@Override
 	public List<Transaction> findByCategory(Category category) {
 		return transactionRepository.findByCategory(category);
+	}
+	
+	@Override	
+	public List<Transaction> findByAccount(Account account)
+	{
+		return transactionRepository.findByAccount(account);
 	}
 }
 

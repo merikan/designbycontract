@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.dbc.mm.model.Account;
 import com.dbc.mm.model.User;
+import com.dbc.mm.service.Account.AccountService;
 import com.dbc.mm.service.user.UserService;
 import com.dbc.mm.vo.SessionState;
 
@@ -18,6 +20,10 @@ public class DevelopmentSecurityInterceptorImpl extends HandlerInterceptorAdapte
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private AccountService accountService;
+
+	
 	private String DEFAULT_ID = "1";
 	
 	public Logger logger = Logger.getLogger(DevelopmentSecurityInterceptorImpl.class);
@@ -56,6 +62,8 @@ public class DevelopmentSecurityInterceptorImpl extends HandlerInterceptorAdapte
 		}
 		SessionState state = new SessionState();
 		state.setLoggedOnUser(user);
+		Account defaultAccount = accountService.getDefaultAccount(user);
+		state.setAccount(defaultAccount);
 		request.getSession().setAttribute(SessionState.SESSION_STATE, state);
 	}
 

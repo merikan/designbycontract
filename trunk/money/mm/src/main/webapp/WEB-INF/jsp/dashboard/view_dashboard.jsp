@@ -72,13 +72,13 @@ border-collapse: separate;
 		<tbody style="vertical-align: center; height: 40px;">
 			<c:forEach var="account" items="${form.accounts}">
 				<c:url value="/pages/chart/view" var="chartUrl">
-					<c:param name="id" value="${account.id}" />
+					<c:param name="accountId" value="${account.id}" />
 				</c:url>
-				<c:url value="/pages/transactions/view" var="transactionsUrl">
-					<c:param name="id" value="${account.id}" />
+				<c:url value="/pages/transaction/viewById" var="transactionsUrl">
+					<c:param name="accountId" value="${account.id}" />
 				</c:url>
 				<c:url value="/pages/budget/view" var="budgetUrl">
-					<c:param name="id" value="${account.id}" />
+					<c:param name="accountId" value="${account.id}" />
 				</c:url>
 				<tr style="vertical-align: center; height: 40px; padding: 20px;">
 					<td>${account.name}</td>
