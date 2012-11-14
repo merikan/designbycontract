@@ -91,10 +91,13 @@ padding: 7px 20px;
 	color: black;
 	margin: auto;
 	text-align: center;
+	z-index: 99999; 
+	
 }
 
 #nav_menu ul ul {
 	display: none;
+	z-index: 99999;
 }
 
 #nav_menu ul a {
