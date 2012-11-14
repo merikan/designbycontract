@@ -71,7 +71,7 @@ border-collapse: separate;
 		</thead>
 		<tbody style="vertical-align: center; height: 40px;">
 			<c:forEach var="account" items="${form.accounts}">
-				<c:url value="/pages/chart/view" var="chartUrl">
+				<c:url value="/pages/chart/viewByAccount" var="chartUrl">
 					<c:param name="accountId" value="${account.id}" />
 				</c:url>
 				<c:url value="/pages/transaction/viewById" var="transactionsUrl">

@@ -14,5 +14,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long>{
 	
 	public List<Transaction> findByCategory(Category category);
 	public List<Transaction> findByAccount(Account account);
+	public List<Transaction> findByAccountAndCategory(Account account, Category category);
 
 }
