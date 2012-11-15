@@ -15,6 +15,8 @@
 
 <%@ include file="/resources/jsp/imports.jspf"%>
 
+<script type="text/javascript" charset="utf-8" src="http://datatables.net/download/build/TableTools.js"></script>
+
 <script type="text/javascript">
 	jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 		"num-html-pre" : function(a) {
@@ -34,27 +36,27 @@
 	$(document).ready(function() {
 		
 		$('#update').click(function() 
-				{
-			var category = $('#mainCategory').val();
-			alert(category);
-			var anSelected = fnGetSelected( oTable );
-			var $row = $(anSelected);
-			var $sel = $row.find('select').val(category);
-			$row.find('select').trigger("change"); 
-			anSelected.trigger("click");
-				});				
+		{
+			var category = $('#mainCategory').val();		
+				
+			$.each($("input:checked"), function() {
 
+ 				var $row = $(this).parents('tr:first');
+				var $sel = $row.find('select').val(category);			
+				$sel.trigger("change");
+			});
+		});				
 		
 		$('.trans').change(function() 
-				{
+				{ 
 					$.post('/mm/pages/transaction/updateTransaction?transactionId=' + $(this).attr('id') + "&categoryId=" + $(this).attr('value'));
 				});
 
 	    /* Add/remove class to a row when clicked on */
-		   $('#transactions tr').click( function() {
+		  /*  $('#transactions tr').click( function() {
 		        $(this).toggleClass('row_selected');
 	        
-		    } );
+		    } ); */
 
 
 		var oTable = $("#transactions").dataTable({
@@ -62,34 +64,68 @@
 			"bJQueryUI" : true,
 			"bLengthChange" : false,
 			"bFilter" : true,
+			"oTableTools" : {
+				"sRowSelect": "multi",
+				"aButtons": [ "select_all", "select_none" ]
+			},			
+			
 			//"sDom": '<"toolbar">',
 			"aaSorting" : [ [ 0, "desc" ] ],
 			//"sDom": 'R<C><"#buttonPlaceholder">H<"clear"><"ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"lfr>t<"ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix"ip>',
-			"aoColumns" : [ {"sType" : "num-html"}, 
+			"aoColumns" : [ { "bSortable": false },
+			                {"sType" : "num-html"}, 
 			                null, 
 			                null, 
 			                { type: "text", bRegex:true }, 
 			                null,
 			                null,
 			                null,
-			                { type: "select", bRegex:true }
+			                { "bSortable": false }
 			               ]					               
 		});
 		    
-		   $(".fg-toolbar").first().append($("#jd"));   
+	   $(".fg-toolbar").first().append($("#jd"));   
 		   
-		   /* $(".th").css("border-style","solid");
-		   $(".th").css("border-width","2px");
-		    */ 
 		
+	   $(function(multiselect){
+			 
+		    // add multiple select / deselect functionality
+		    $("#selectall").click(function () {
+		          $('.case').attr('checked', this.checked);
+		    });
+		 
+		    // if all checkbox are selected, check the selectall checkbox
+		    // and viceversa
+		    $(".case").click(function(){
+		    	 $(this).toggleClass('row_selected');
+		        if($(".case").length == $(".case:checked").length) {
+		            $("#selectall").attr("checked", "checked");
+		            
+		        } else {
+		            $("#selectall").removeAttr("checked");
+		        }
+		 
+		    });
+		});				    
 	
 		        	 					
 	});
 	
+	
+	$().ready(function() {
+		jQuery.checked_rows = function() {
+			var ids = '';
+			$.each($("input:checked"), function() {
+				ids += (ids?',':'') + $(this).attr('value');
+			});
+			return ids;
+		};
+	});
 	function fnGetSelected( oTable )
 	{
 	    return oTable.$('tr.row_selected');
 	}
+	
 </script>
 
 
@@ -103,11 +139,13 @@
 					<h3 style="font-size:16px; margin-top : 0px; margin-bottom : 0px; float: left;">My Transactions</h3>
 					
 					<div id="mytable">
+					<a href="javascript:window.location.href='?ids='+$.checked_rows()"></a>
 					
 					<table class="simple display" id="transactions">
 						<thead >
 							<tr>
-								<th style="border-left:solid; border-width : 1px; border-left-color: gray" width="40px" align="left" valign="bottom">Id</th>
+								<th><input type="checkbox" id="selectall"/></th>
+								<th align="left" style="border-left:solid; border-width : 1px; border-left-color: gray" width="40px" align="left" >Id</th>
 								<th width="60px" align="left" valign="bottom">Date</th>
 								<th width="40px" align="left" valign="bottom">Type</th>
 								<th width="250px" align="left" valign="bottom">Description</th>
@@ -122,7 +160,8 @@
 								<c:url value="/pages/triage/view" var="url">
 									<c:param name="id" value="${transaction.id}" />
 								</c:url>
-								<tr style="vertical-align:center; height:40px; padding : 20px;">
+								<tr style="vertical-align:middle; height:40px; padding : 20px;">
+									<td style="width:13px" ><input type="checkbox" class="case" name="case"/></td>
 									<td><a href="<c:out value="${url}"/>">${transaction.id}</a></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${transaction.date}" /></td>
 									<td>${transaction.type}</td>

@@ -54,18 +54,7 @@ public class ReportController extends AbstractApplicationController {
 	}
 	
 
-	@RequestMapping(method=RequestMethod.POST, value="/updateTransaction")  
-	public @ResponseBody String getMovie(@RequestParam("transactionId") Long transactionId, @RequestParam("categoryId") Long categoryId, Model model){
-		Transaction t = transactionService.findById(transactionId);
-		logger.error("***********************" + t.getId());
-		
-		Category c = categoryService.findById(categoryId);
-		logger.error("*********************" + c.getId());
-		t.setCategory(c);
-		
-		transactionService.save(t);
-	    return "value";
-	}
+
 	
 	
 }
