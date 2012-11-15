@@ -43,7 +43,6 @@ border-collapse: separate;
 			//"sDom": 'R<C><"#buttonPlaceholder">H<"clear"><"ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"lfr>t<"ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix"ip>',
 			"aoColumns" : [ { "sType" : "num-html"}, 
 			                  null, 
-			                  null, 
 			                  {	type : "text",bRegex : true	}, 
 			                  null, 
 			                  null ]
@@ -58,12 +57,11 @@ border-collapse: separate;
 
 <div style="float:left">
 	<h3>My Accounts</h3>
-	<table style="vertical-align:left; width:1000px" class="display" id="accounts">
+	<table style="vertical-align:left;" class="display" id="accounts">
 		<thead>
 			<tr>
-				<th width="100px" align="left">Account Name</th>
-				<th width="100px" align="left">Account Number</th>
-				<th width="200px" align="left">Account Description</th>
+				<th width="150px" align="left">Account Name</th>
+				<th width="150px" align="left">Account Number</th>
 				<th width="80px" align="left"></th>
 				<th width="80px" align="left"></th>
 				<th width="80px" align="left"></th>
@@ -83,7 +81,6 @@ border-collapse: separate;
 				<tr style="vertical-align: center; height: 40px; padding: 20px;">
 					<td>${account.name}</td>
 					<td>${account.name}</td>
-					<td>${account.description}</td>
 					<td><a href="<c:out value="${transactionsUrl}"/>">View Transactions</a></td>
 					<td><a href="<c:out value="${budgetUrl}"/>">View Budget</a></td>
 					<td><a href="<c:out value="${chartUrl}"/>">View Categories</a></td>
